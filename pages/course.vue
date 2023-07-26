@@ -10,5 +10,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  mounted() {
+    this.getCourses();
+  },
+  methods: {
+    async getCourses() {
+      try {
+        const response = await this.$api.general.getCourses();
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+};
 </script>

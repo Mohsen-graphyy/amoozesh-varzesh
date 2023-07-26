@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     },
     // dirs: ['~/components']
   ],
+  runtimeConfig: {
+    API_BASE_URL: process.env.API_BASE_URL
+  },
   pages: true,
   postcss: {
     plugins: {
