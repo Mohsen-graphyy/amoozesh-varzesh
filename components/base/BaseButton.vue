@@ -3,11 +3,14 @@
     <button v-if="!hasIcon" class="rounded-xl py-3 px-4" :class="customClass">
       {{ title }}
     </button>
-    <div v-else class="rounded-xl py-3 px-4">
-      <button :class="customClass">
-        {{ title }}
-      </button>
-    </div>
+    <button
+      v-else
+      class="rounded-xl py-3 px-4 flex items-center"
+      :class="customClass"
+    >
+      <base-icon :svg-class="svgClass" :icon-path="iconPath"></base-icon>
+      <p class="mr-2">{{ title }}</p>
+    </button>
   </div>
 </template>
 
@@ -26,9 +29,14 @@ export default {
       type: String,
       default: "",
     },
+    svgClass: {
+      type: String,
+      default: "",
+    },
+    iconPath: {
+      type: String,
+      default: "",
+    },
   },
 };
 </script>
-
-<style>
-</style>

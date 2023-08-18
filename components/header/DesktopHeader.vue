@@ -16,8 +16,10 @@
       </div>
       <base-button
         title="ورود و عضویت"
-        custom-class="bg-beta-green-100 text-white"
-        class=""
+        custom-class="bg-beta-green-100 text-white hover:bg-green-600"
+        svg-class="stroke-white w-5"
+        icon-path="Person"
+        :has-icon="true"
       />
     </div>
   </div>
