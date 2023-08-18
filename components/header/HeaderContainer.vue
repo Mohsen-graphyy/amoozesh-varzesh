@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-olied-100 h-screen">
+  <div class="fixed top-4 header w-full">
     <desktop-header />
   </div>
 </template>

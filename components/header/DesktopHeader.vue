@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full bg-white rounded-xl p-4">
+  <div class="flex flex-col bg-white rounded-xl p-4">
     <div class="flex flex-row justify-between items-center">
       <div class="flex items-center">
         <img src="/images/logo.svg" alt="آموزش ورزش" />
@@ -9,15 +9,16 @@
         <header-list-item
           v-for="headerItem in headerListItems"
           :key="headerItem.id"
-          class="ml-6 text-gray-500"
+          class="ml-6 text-gray-500 !text-sm"
           :link="headerItem.link"
           :title="headerItem.title"
         />
       </div>
       <base-button
         title="ورود و عضویت"
-        custom-class="bg-beta-green-100 text-white hover:bg-green-600"
-        svg-class="stroke-white w-5"
+        class=""
+        custom-class="bg-beta-green-100 text-white group transition duration-200 hover:bg-white border border-transparent hover:border-beta-green-100 hover:text-beta-green-100 text-sm"
+        svg-class="stroke-white w-5 transition duration-200 group-hover:stroke-beta-green-100 "
         icon-path="Person"
         :has-icon="true"
       />
