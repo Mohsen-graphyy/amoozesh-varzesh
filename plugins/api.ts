@@ -12,7 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   
   const fetchOptions: FetchOptions = {
 //      baseURL: nuxtApp.$config.API_BASE_URL,
-        baseURL : 'https://random-data-api.com/' // this is only for test not production
+        baseURL : 'https://book-finder1.p.rapidapi.com' // this is only for test not production
   }
 
   /** create a new instance of $fetcher with custom option */
