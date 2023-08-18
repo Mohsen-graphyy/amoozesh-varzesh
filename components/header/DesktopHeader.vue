@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col bg-white rounded-xl p-4">
+  <div class="flex flex-col bg-white rounded-xl p-4 md:mx-16">
     <div class="flex flex-row justify-between items-center">
       <div class="flex items-center">
         <img src="/images/logo.svg" alt="آموزش ورزش" />
@@ -17,7 +17,7 @@
       <base-button
         title="ورود و عضویت"
         class=""
-        custom-class="bg-beta-green-100 text-white group transition duration-200 hover:bg-white border border-transparent hover:border-beta-green-100 hover:text-beta-green-100 text-sm"
+        custom-class="bg-beta-green-100 text-white group transition duration-200 hover:bg-white border border-transparent hover:border-beta-green-100 hover:text-beta-green-100 text-sm font-normal"
         svg-class="stroke-white w-5 transition duration-200 group-hover:stroke-beta-green-100 "
         icon-path="Person"
         :has-icon="true"

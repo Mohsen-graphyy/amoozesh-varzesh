@@ -12,6 +12,6 @@ export default {};
 <style>
 .header {
   /* 587 */
-  padding: 0 calc(50% - 592px);
+  padding: 0 calc(50% - 640px);
 }
 </style>

@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+        font-family: YekanBakh;
+        src: url('~/assets/font/Yekan Bakh Family/TTF/YekanBakh-Regular.ttf');
+}
+
 * {
         direction: rtl;
-        font-family: samim;
+        font-family: YekanBakh;
 }
