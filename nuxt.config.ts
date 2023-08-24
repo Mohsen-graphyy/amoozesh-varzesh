@@ -2,6 +2,12 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: [
+    '@nuxtjs/eslint-module'
+  ],
+  eslint: {
+    /* module options */
+  },
   ssr: true,
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
