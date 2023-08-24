@@ -1,6 +1,6 @@
 <template>
   <i :class="[` ${svgColor}`]">
-    <component :class="[svgClass]" :is="icon"></component>
+    <component :is="icon" :class="[svgClass]" ></component>
     <slot></slot>
   </i>
 </template>
