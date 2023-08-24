@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-gray-100">
     <header-container />
     <nuxt-page class="header" />
     <mobile-menu-box/>
