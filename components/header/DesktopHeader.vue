@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col bg-white rounded-xl p-4 md:mx-16">
+  <div class="hidden md:flex flex-col bg-white rounded-xl p-4 md:mx-16">
     <div class="flex flex-row justify-between items-center">
       <div class="flex items-center">
         <img src="/images/logo.svg" alt="آموزش ورزش" />

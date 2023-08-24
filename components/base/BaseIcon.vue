@@ -5,7 +5,7 @@
   </i>
 </template>
       
-      <script>
+<script>
 export default {
   name: "BaseIcon",
   props: {

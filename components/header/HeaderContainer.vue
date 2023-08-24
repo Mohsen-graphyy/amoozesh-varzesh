@@ -1,6 +1,7 @@
 <template>
   <div class="fixed top-4 header w-full">
-    <desktop-header />
+    <desktop-header/>
+    <mobile-header/>
   </div>
 </template>
 

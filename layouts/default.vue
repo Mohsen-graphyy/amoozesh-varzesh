@@ -2,6 +2,7 @@
   <div>
     <header-container />
     <nuxt-page class="header" />
+    <mobile-menu-box/>
   </div>
 </template>
 
