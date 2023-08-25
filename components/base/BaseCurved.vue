@@ -1,16 +1,6 @@
 <template>
-  <div class="shape" :class="`before:${backgroundColor}`"></div>
+  <div class="shape"></div>
 </template>
-<script>
-export default {
-  props: {
-    backgroundColor: {
-      type: String,
-      default: "bg-olied-100",
-    },
-  },
-};
-</script>
 <style scoped>
 .shape {
   position: relative;

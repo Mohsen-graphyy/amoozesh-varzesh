@@ -1,11 +1,12 @@
 <template>
   <div class="flex flex-col">
-    <h1 class="font-bold text-2xl">{{ title }}</h1>
     <slot name="subtitle"></slot>
+    <h1 class="font-bold text-2xl">{{ title }}</h1>
     <base-icon icon-path="CircleDivider" />
-    <p class="font-thin mt-4 text-sm leading-6">
+    <p v-if="content" class="font-thin mt-4 text-sm leading-6" :class="paragraphClass">
       {{ content }}
     </p>
+    <slot name="customBody" class="mt-4"></slot>
   </div>
 </template>
 
@@ -18,11 +19,14 @@ export default {
     },
     content: {
       type: String,
-      required: true,
+      default: ''
     },
+    paragraphClass: {
+      type: String,
+      default: ''
+    }
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
