@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-olied-100 pt-10 text-white">
+  <footer class="bg-olied-100 pt-10 text-white pb-24 md:pb-0">
     <div class="mx-4 md:mx-20 flex flex-col">
       <div
         class="grid grid-cols-2 md:flex flex-warp md:flex-row justify-between">
@@ -45,6 +45,17 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="flex flex-col md:flex-row md:justify-between mt-10">
+        <div class="flex items-center">
+          <img src="/images/logo.svg" alt="آموزش ورزش" />
+          <h1 class="font-bold mr-2">سامانه آموزش ورزش</h1>
+        </div>
+        <h2 class="text-sm mt-3">
+          در این وبسایت ما سعی کردیم در 3 بخش معرفی دوره‌های مربیگری و سمینارها،
+          زبان علوم ورزشی و لایوهای آموزشی رایگان اطلاعاتی را در اختیار
+          دانشجویان تربیت‌بدنی و مربیان عزیز قرار دهیم.
+        </h2>
       </div>
     </div>
   </footer>
