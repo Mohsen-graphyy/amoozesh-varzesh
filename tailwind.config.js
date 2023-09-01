@@ -16,6 +16,7 @@ module.exports = {
     extend: {
       colors: {
         olied: {
+          50: "#545CC1",
           100: "#424AB5",
         },
         "beta-green": {

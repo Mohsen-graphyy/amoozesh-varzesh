@@ -2,7 +2,8 @@
   <div class="bg-gray-100">
     <header-container />
     <nuxt-page class="header" />
-    <mobile-menu-box/>
+    <mobile-menu-box />
+    <base-footer />
   </div>
 </template>
 
