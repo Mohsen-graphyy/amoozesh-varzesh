@@ -5,6 +5,7 @@
   <home-languege-section />
   <home-live-section />
   <home-perpuse-section />
+  <home-activition-section />
 </template>
 
 <script>
