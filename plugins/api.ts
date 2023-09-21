@@ -1,23 +1,21 @@
-import { $fetch,FetchOptions } from 'ohmyfetch';
-import { defineNuxtPlugin } from '#app';
-import General from '~~/services/modules/general';
+import { $fetch, FetchOptions } from "ohmyfetch";
+import { defineNuxtPlugin } from "#app";
+import General from "~~/services/modules/general";
 
 /** ApiInstance interface provides us with good typing */
 interface IApiInstance {
-  general: General
+  general: General;
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-
-  
+export default defineNuxtPlugin(() => {
   const fetchOptions: FetchOptions = {
-//      baseURL: nuxtApp.$config.API_BASE_URL,
-        baseURL : 'https://book-finder1.p.rapidapi.com' // this is only for test not production
-  }
+    //      baseURL: nuxtApp.$config.API_BASE_URL,
+    baseURL: "https://book-finder1.p.rapidapi.com", // this is only for test not production
+  };
 
   /** create a new instance of $fetcher with custom option */
   const apiFetcher = $fetch.create(fetchOptions);
-  
+
   /** an object containing all repositories we need to expose */
   const modules: IApiInstance = {
     general: new General(apiFetcher),

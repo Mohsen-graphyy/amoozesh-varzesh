@@ -9,6 +9,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:vue/vue3-essential",
   ],
+  globals: {
+    definePageMeta: "readonly",
+  },
   overrides: [
     {
       env: {
