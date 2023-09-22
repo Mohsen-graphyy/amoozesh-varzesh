@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="isShow" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50">
+    <div v-if="isShow" class="fixed inset-0 bg-gray-900 bg-opacity-70 z-50">
       <slot></slot>
     </div>
   </transition>
