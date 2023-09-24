@@ -3,6 +3,7 @@
     :is-modal-open="isModalOpen"
     @outside-click="$emit('close')">
     <div class="bg-white mx-6 rounded-t-lg p-4 flex flex-col">
+      shop
       <header-list-item
         v-for="headerItem in headerListItems"
         :key="headerItem.id"

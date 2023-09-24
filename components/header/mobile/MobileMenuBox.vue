@@ -6,44 +6,62 @@
         v-for="menuItem in menuListItems"
         :key="menuItem.id"
         class="bg-white p-2 rounded-lg"
-        @click="isModalOpen = !isModalOpen">
+        :class="{
+          'border border-beta-green-100':
+            selectedItem && menuItem.id === selectedItem.id,
+        }"
+        @click="selectItem(menuItem)">
         <base-icon
-          svg-class="stroke-gray-700 w-5"
+          :svg-class="[
+            selectedItem && menuItem.id === selectedItem.id
+              ? 'stroke-beta-green-100 w-5'
+              : 'stroke-gray-700 w-5',
+          ]"
           :icon-path="menuItem.iconPath"></base-icon>
       </div>
     </div>
   </div>
-  <menu-items-main :is-modal-open="isModalOpen" @close="isModalOpen = false" />
+  <menu-items-main
+    :is-modal-open="isModalOpen('MenuItemsMain')"
+    @close="closeModals" />
+  <menu-items-shop
+    :is-modal-open="isModalOpen('MenuItemsShop')"
+    @close="closeModals" />
 </template>
+
 <script>
 export default {
   data() {
     return {
       menuListItems: [
-        {
-          id: 1,
-          iconPath: "Home",
-        },
-        {
-          id: 2,
-          iconPath: "Search",
-        },
-        {
-          id: 3,
-          iconPath: "Menu",
-        },
-        {
-          id: 4,
-          iconPath: "Shoping",
-        },
-        {
-          id: 5,
-          iconPath: "Person",
-        },
+        { id: 1, iconPath: "Home", link: "home" },
+        { id: 2, iconPath: "Search", modalName: "" },
+        { id: 3, iconPath: "Menu", modalName: "MenuItemsMain" },
+        { id: 4, iconPath: "Shoping", modalName: "MenuItemsShop" },
+        { id: 5, iconPath: "Person", link: "profile" },
       ],
       selectedItem: null,
-      isModalOpen: false,
     };
+  },
+  methods: {
+    selectItem(menuItem) {
+      if (menuItem.link) {
+        this.$router.push({ name: menuItem.link });
+        this.closeModals();
+      } else if (menuItem.modalName) {
+        if (this.isModalOpen(menuItem.modalName)) {
+          this.closeModals();
+        } else {
+          this.selectedItem = menuItem;
+        }
+      }
+    },
+    closeModals() {
+      this.selectedItem = null;
+    },
+    isModalOpen(modalName) {
+      return this.selectedItem && this.selectedItem.modalName === modalName;
+    },
   },
 };
 </script>
