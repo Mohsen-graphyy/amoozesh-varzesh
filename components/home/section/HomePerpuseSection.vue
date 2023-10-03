@@ -24,31 +24,25 @@
       class="w-full md:w-2/5 mt-10 md:m-0" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      featureNumbers: [
-        {
-          id: 1,
-          iconPath: "Cup",
-          title: "سال همراهی با شما",
-          number: 7,
-        },
-        {
-          id: 2,
-          iconPath: "Education",
-          title: "معرفی دوره های آموزشی",
-          number: 7000,
-        },
-        {
-          id: 3,
-          iconPath: "Webinar",
-          title: "وبینار آموزشی رایگان",
-          number: 60,
-        },
-      ],
-    };
+<script setup>
+const featureNumbers = [
+  {
+    id: 1,
+    iconPath: "Cup",
+    title: "سال همراهی با شما",
+    number: 7,
   },
-};
+  {
+    id: 2,
+    iconPath: "Education",
+    title: "معرفی دوره های آموزشی",
+    number: 7000,
+  },
+  {
+    id: 3,
+    iconPath: "Webinar",
+    title: "وبینار آموزشی رایگان",
+    number: 60,
+  },
+]
 </script>

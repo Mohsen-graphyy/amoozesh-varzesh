@@ -6,44 +6,57 @@
         v-for="menuItem in menuListItems"
         :key="menuItem.id"
         class="bg-white p-2 rounded-lg"
-        @click="isModalOpen = !isModalOpen">
+        :class="{
+          'border border-beta-green-100':
+            selectedItem && menuItem.id === selectedItem.id,
+        }"
+        @click="selectItem(menuItem)">
         <base-icon
-          svg-class="stroke-gray-700 w-5"
+          :svg-class="[
+            selectedItem && menuItem.id === selectedItem.id
+              ? 'stroke-beta-green-100 w-5'
+              : 'stroke-gray-700 w-5',
+          ]"
           :icon-path="menuItem.iconPath"></base-icon>
       </div>
     </div>
   </div>
-  <menu-items-main :is-modal-open="isModalOpen" @close="isModalOpen = false" />
+  <menu-items-main
+    :is-modal-open="isModalOpen('MenuItemsMain')"
+    @close="closeModals" />
+  <menu-items-shop
+    :is-modal-open="isModalOpen('MenuItemsShop')"
+    @close="closeModals" />
 </template>
-<script>
-export default {
-  data() {
-    return {
-      menuListItems: [
-        {
-          id: 1,
-          iconPath: "Home",
-        },
-        {
-          id: 2,
-          iconPath: "Search",
-        },
-        {
-          id: 3,
-          iconPath: "Menu",
-        },
-        {
-          id: 4,
-          iconPath: "Shoping",
-        },
-        {
-          id: 5,
-          iconPath: "Person",
-        },
-      ],
-      selectedItem: null,
-      isModalOpen: false,
-    };
-  },
-};
+
+<script setup>
+import { ref } from "vue";
+
+const menuListItems = [
+  { id: 1, iconPath: "Home", link: "home" },
+  { id: 2, iconPath: "Search", modalName: "" },
+  { id: 3, iconPath: "Menu", modalName: "MenuItemsMain" },
+  { id: 4, iconPath: "Shoping", modalName: "MenuItemsShop" },
+  { id: 5, iconPath: "Person", link: "profile" },
+];
+const selectedItem = ref(null);
+
+function selectItem(menuItem) {
+  if (menuItem.link) {
+    navigateTo({ name: menuItem.link });
+    closeModals();
+  } else if (menuItem.modalName) {
+    if (isModalOpen(menuItem.modalName)) {
+      closeModals();
+    } else {
+      selectedItem.value = menuItem;
+    }
+  }
+}
+function closeModals() {
+  selectedItem.value = null;
+}
+function isModalOpen(modalName) {
+  return selectedItem.value && selectedItem.value.modalName === modalName;
+}
 </script>

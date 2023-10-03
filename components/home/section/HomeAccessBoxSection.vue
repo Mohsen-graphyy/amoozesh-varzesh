@@ -8,38 +8,32 @@
       :title="accessItem.title" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      accessListItem: [
-        {
-          id: 1,
-          iconPath: "Home",
-          title: "سمینارها و کارگاه ها",
-        },
-        {
-          id: 2,
-          iconPath: "Home",
-          title: "مربیگری و داوری",
-        },
-        {
-          id: 3,
-          iconPath: "Home",
-          title: "همایش های ورزشی",
-        },
-        {
-          id: 4,
-          iconPath: "Home",
-          title: "دوره های آفلاین",
-        },
-        {
-          id: 5,
-          iconPath: "Home",
-          title: "خرید کتاب",
-        },
-      ],
-    };
+<script setup>
+const accessListItem = [
+  {
+    id: 1,
+    iconPath: "Home",
+    title: "سمینارها و کارگاه ها",
   },
-};
+  {
+    id: 2,
+    iconPath: "Home",
+    title: "مربیگری و داوری",
+  },
+  {
+    id: 3,
+    iconPath: "Home",
+    title: "همایش های ورزشی",
+  },
+  {
+    id: 4,
+    iconPath: "Home",
+    title: "دوره های آفلاین",
+  },
+  {
+    id: 5,
+    iconPath: "Home",
+    title: "خرید کتاب",
+  },
+];
 </script>

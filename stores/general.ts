@@ -1,6 +1,6 @@
 export const useGenralStore = defineStore("general", {
   state: () => ({
-    // data
+    counter: 0,
   }),
   actions: {
     // methods

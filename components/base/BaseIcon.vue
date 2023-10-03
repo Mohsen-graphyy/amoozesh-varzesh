@@ -5,27 +5,28 @@
   </i>
 </template>
 
-<script>
-export default {
+<script setup>
+import { defineAsyncComponent, shallowRef, watchEffect } from "vue";
+
+defineOptions({
   name: "BaseIcon",
-  props: {
-    svgClass: {
-      type: [String, Object, Array],
-      default: "",
-    },
-    iconPath: {
-      type: String,
-      required: true,
-    },
+});
+
+const props = defineProps({
+  svgClass: {
+    type: [String, Object, Array],
+    default: "",
   },
-  data() {
-    return {
-      icon: null,
-    };
+  iconPath: {
+    type: String,
+    required: true,
   },
-  async created() {
-    this.icon = await import(`~/components/icon/${this.iconPath}.vue`);
-    this.icon = this.icon.default;
-  },
-};
+});
+
+const icon = shallowRef(null);
+watchEffect(() => {
+  icon.value = defineAsyncComponent(() =>
+    import(`~/components/icon/${props.iconPath}.vue`)
+  );
+});
 </script>

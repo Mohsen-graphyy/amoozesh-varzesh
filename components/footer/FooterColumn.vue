@@ -42,65 +42,59 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      firstCols: [
-        {
-          id: 1,
-          title: "خانه",
-          link: "",
-        },
-        {
-          id: 2,
-          title: "ارتباط با ما",
-          link: "",
-        },
-        {
-          id: 3,
-          title: "درباره ما",
-          link: "",
-        },
-        {
-          id: 4,
-          title: "سوالات متداول",
-          link: "",
-        },
-      ],
-      secondCols: [
-        {
-          id: 1,
-          title: "سمینارها و کارگاه ها",
-          link: "",
-        },
-        {
-          id: 2,
-          title: "همایش های ورزشی",
-          link: "",
-        },
-        {
-          id: 3,
-          title: "دوره های آفلاین",
-          link: "",
-        },
-        {
-          id: 4,
-          title: "مربیگری و داوری",
-          link: "",
-        },
-        {
-          id: 5,
-          title: "خرید کتاب",
-          link: "",
-        },
-        {
-          id: 6,
-          title: "زبان علوم ورزشی",
-          link: "",
-        },
-      ],
-    };
+<script setup>
+const firstCols = [
+  {
+    id: 1,
+    title: "خانه",
+    link: "",
   },
-};
+  {
+    id: 2,
+    title: "ارتباط با ما",
+    link: "",
+  },
+  {
+    id: 3,
+    title: "درباره ما",
+    link: "",
+  },
+  {
+    id: 4,
+    title: "سوالات متداول",
+    link: "",
+  },
+];
+const secondCols = [
+  {
+    id: 1,
+    title: "سمینارها و کارگاه ها",
+    link: "",
+  },
+  {
+    id: 2,
+    title: "همایش های ورزشی",
+    link: "",
+  },
+  {
+    id: 3,
+    title: "دوره های آفلاین",
+    link: "",
+  },
+  {
+    id: 4,
+    title: "مربیگری و داوری",
+    link: "",
+  },
+  {
+    id: 5,
+    title: "خرید کتاب",
+    link: "",
+  },
+  {
+    id: 6,
+    title: "زبان علوم ورزشی",
+    link: "",
+  },
+];
 </script>

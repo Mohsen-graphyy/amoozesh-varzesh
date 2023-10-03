@@ -24,25 +24,23 @@
       :class="[lineWidth, content ? '' : 'hidden md:inline-block']"></span>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    iconPath: {
-      type: String,
-      requierd: true,
-    },
-    title: {
-      type: String,
-      requierd: true,
-    },
-    content: {
-      type: String,
-      default: "",
-    },
-    lineWidth: {
-      type: String,
-      default: "w-5",
-    },
+<script setup>
+defineProps({
+  iconPath: {
+    type: String,
+    requierd: true,
   },
-};
+  title: {
+    type: String,
+    requierd: true,
+  },
+  content: {
+    type: String,
+    default: "",
+  },
+  lineWidth: {
+    type: String,
+    default: "w-5",
+  },
+});
 </script>

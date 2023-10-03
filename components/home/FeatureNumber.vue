@@ -5,21 +5,19 @@
     <p class="mr-2 text-sm">{{ title }}</p>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    iconPath: {
-      type: String,
-      required: true,
-    },
-    number: {
-      type: Number,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
+<script setup>
+defineProps({
+  iconPath: {
+    type: String,
+    required: true,
   },
-};
+  number: {
+    type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+});
 </script>

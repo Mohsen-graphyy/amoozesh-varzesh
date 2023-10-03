@@ -6,15 +6,13 @@
   </transition>
 </template>
 
-<script>
-export default {
-  props: {
-    isShow: {
-      type: Boolean,
-      default: true,
-    },
+<script setup>
+defineProps({
+  isShow: {
+    type: Boolean,
+    default: true,
   },
-};
+});
 </script>
 <style>
 .fade-enter-active,

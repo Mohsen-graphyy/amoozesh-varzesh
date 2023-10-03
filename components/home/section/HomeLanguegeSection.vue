@@ -17,29 +17,23 @@
     </base-paragraph>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      englishImage: [
-        {
-          id: 1,
-          path: "/images/image3.png",
-        },
-        {
-          id: 2,
-          path: "/images/image4.png",
-        },
-        {
-          id: 3,
-          path: "/images/image5.png",
-        },
-        {
-          id: 4,
-          path: "/images/image6.png",
-        },
-      ],
-    };
+<script setup>
+const englishImage = [
+  {
+    id: 1,
+    path: "/images/image3.png",
   },
-};
+  {
+    id: 2,
+    path: "/images/image4.png",
+  },
+  {
+    id: 3,
+    path: "/images/image5.png",
+  },
+  {
+    id: 4,
+    path: "/images/image6.png",
+  },
+];
 </script>

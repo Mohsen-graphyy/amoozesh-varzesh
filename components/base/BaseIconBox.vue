@@ -5,21 +5,19 @@
     <base-icon :icon-path="iconPath" svg-class="w-4 stroke-white" />
   </div>
 </template>
-<script>
-export default {
-  props: {
-    iconPath: {
-      type: String,
-      required: true,
-    },
-    borderClasses: {
-      type: String,
-      default: "border-beta-gray-100 border-4",
-    },
-    sizingClasses: {
-      type: String,
-      default: "w-12 h-12 bg-olied-100",
-    },
+<script setup>
+defineProps({
+  iconPath: {
+    type: String,
+    required: true,
   },
-};
+  borderClasses: {
+    type: String,
+    default: "border-beta-gray-100 border-4",
+  },
+  sizingClasses: {
+    type: String,
+    default: "w-12 h-12 bg-olied-100",
+  },
+});
 </script>
