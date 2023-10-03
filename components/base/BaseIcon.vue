@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { defineAsyncComponent, shallowRef, watchEffect } from "vue";
+
 export default {
   name: "BaseIcon",
   props: {
@@ -18,14 +20,15 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      icon: null,
-    };
-  },
-  async created() {
-    this.icon = await import(`~/components/icon/${this.iconPath}.vue`);
-    this.icon = this.icon.default;
+  setup(props) {
+    const icon = shallowRef(null);
+    watchEffect(() => {
+      icon.value = defineAsyncComponent(() =>
+        import(`~/components/icon/${props.iconPath}.vue`)
+      );
+    });
+
+    return { icon };
   },
 };
 </script>
