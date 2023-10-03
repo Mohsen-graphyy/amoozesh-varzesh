@@ -4,17 +4,15 @@
   }}</NuxtLink>
 </template>
 
-<script>
-export default {
-  props: {
-    link: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
+<script setup>
+defineProps({
+  link: {
+    type: String,
+    required: true,
   },
-};
+  title: {
+    type: String,
+    required: true,
+  },
+});
 </script>

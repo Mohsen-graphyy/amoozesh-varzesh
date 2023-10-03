@@ -8,9 +8,8 @@
   <home-activition-section />
 </template>
 
-<script>
+<script setup>
 definePageMeta({
   name: "home",
 });
-export default {};
 </script>

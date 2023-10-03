@@ -1,9 +1,8 @@
 <template>
   <div>salta</div>
 </template>
-<script>
+<script setup>
 definePageMeta({
   name: "profile",
 });
-export default {};
 </script>

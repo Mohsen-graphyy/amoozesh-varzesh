@@ -12,40 +12,33 @@
     </div>
   </base-mobile-modal-menu>
 </template>
-<script>
-export default {
-  name: "MenuItemsMain",
-  props: {
-    isModalOpen: {
-      type: Boolean,
-      required: true,
-    },
+<script setup>
+defineProps({
+  isModalOpen: {
+    type: Boolean,
+    required: true,
   },
-  data() {
-    return {
-      headerListItems: [
-        {
-          id: 1,
-          link: "home",
-          title: "خانه",
-        },
-        {
-          id: 2,
-          link: "home",
-          title: "درباره ما",
-        },
-        {
-          id: 3,
-          link: "home",
-          title: "ارتباط با ما",
-        },
-        {
-          id: 4,
-          link: "home",
-          title: "سوالات متداول",
-        },
-      ],
-    };
+});
+const headerListItems = [
+  {
+    id: 1,
+    link: "home",
+    title: "خانه",
   },
-};
+  {
+    id: 2,
+    link: "home",
+    title: "درباره ما",
+  },
+  {
+    id: 3,
+    link: "home",
+    title: "ارتباط با ما",
+  },
+  {
+    id: 4,
+    link: "home",
+    title: "سوالات متداول",
+  },
+];
 </script>

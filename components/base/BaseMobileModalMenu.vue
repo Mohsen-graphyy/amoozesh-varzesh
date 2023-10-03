@@ -8,15 +8,13 @@
     </div>
   </transition>
 </template>
-<script>
-export default {
-  props: {
-    isModalOpen: {
-      type: Boolean,
-      default: false,
-    },
+<script setup>
+defineProps({
+  isModalOpen: {
+    type: Boolean,
+    default: false,
   },
-};
+});
 </script>
 
 <style scoped>
