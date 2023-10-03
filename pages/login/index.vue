@@ -1,6 +1,8 @@
 <template>
   <section class="flex h-screen justify-center items-center bg-beta-gray-50">
-    <div class="bg-white rounded-xl p-5 auth-box-shadow">salka</div>
+    <div class="flex flex-col bg-white rounded-xl p-5 auth-box-shadow">
+      <base-logo title-classes="ml-10 font-bold" />
+    </div>
   </section>
 </template>
 <script setup>
