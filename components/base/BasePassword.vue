@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col" :class="[wrapperClass]">
+  <div class="flex flex-col">
     <label
       v-if="label || $slots.label"
       :for="id"
@@ -9,22 +9,23 @@
     <div class="relative">
       <input
         class="w-full rounded-lg h-12 bg-beta-gray-50 border border-solid outline-none pr-11 placeholder:text-beta-gray-150 placeholder:text-sm"
-        :class="{ 'border-red-500': errorMessage, 'border-green-500': isValid }"
-        type="text"
+        :class="{ 'border-red-500': errorMessage }"
+        :type="showPassword ? 'text' : 'password'"
         :id="id"
         :placeholder="placeholder"
         :value="modelValue"
         @input="onInput($event.target.value)"
         @blur="validate" />
       <BaseIcon
-        :icon-path="icon"
+        icon-path="Password"
         class="absolute top-3 right-3"
         :class="[errorMessage ? 'stroke-red-500' : 'stroke-beta-gray-300']"
         svg-class="w-6" />
       <BaseIcon
-        v-if="isValid"
-        icon-path="Correct"
-        class="absolute top-3 left-3 w-6 text-green-500" />
+        icon-path="Eye"
+        class="absolute top-3 left-3 cursor-pointer"
+        svg-class="w-6 stroke-beta-gray-300"
+        @click="showPassword = !showPassword" />
     </div>
     <Transition name="fade">
       <p v-if="errorMessage" class="text-red-500 mt-2 text-sm">
@@ -40,17 +41,13 @@ const props = defineProps({
   isRequired: { type: Boolean, default: false },
   label: { type: String, default: "" },
   id: { type: String, required: true },
-  placeholder: { type: String, default: "" },
-  rules: { type: Array, default: () => [] },
+  placeholder: { type: String, default: "رمز عبور" },
+  rules: { type: Array, default: () => [ruleNotEmpty] },
   isLazyValidation: { type: Boolean, default: true },
   modelValue: { type: String, default: "" },
-  wrapperClass: {
-    type: [String, Array, Object],
-    default: "",
-  },
 });
 const errorMessage = ref("");
-const isValid = ref(false);
+const showPassword = ref(false);
 const emit = defineEmits(["update:modelValue", "error"]);
 watch(
   () => props.modelValue,
@@ -69,6 +66,5 @@ function validate() {
     const testResult = pattern(props.modelValue);
     if (testResult !== true) errorMessage.value = testResult;
   });
-  isValid.value = !errorMessage.value ? true : false;
 }
 </script>

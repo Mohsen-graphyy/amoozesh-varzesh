@@ -16,6 +16,10 @@
           icon="Mobile"
           :rules="[rulePhoneNumber, ruleNotEmpty]"
           v-model="kir" />
+        <base-password
+          id="password"
+          placeholder="رمز عبور"
+          v-model="password" />
         <nuxt-link :to="{ name: 'home' }">bro home</nuxt-link>
       </div>
     </div>
@@ -27,6 +31,7 @@ definePageMeta({
   layout: false,
 });
 const kir = ref("");
+const password = ref("");
 </script>
 <style scoped>
 .auth-box-shadow {
