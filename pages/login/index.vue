@@ -10,6 +10,12 @@
         <div class="flex justify-center items-center">
           <base-logo title-classes=" font-bold" />
         </div>
+        <base-input
+          id="username"
+          placeholder="شماره خود را وارد کنید"
+          icon="Mobile"
+          :rules="[rulePhoneNumber, ruleNotEmpty]"
+          v-model="kir" />
         <nuxt-link :to="{ name: 'home' }">bro home</nuxt-link>
       </div>
     </div>
@@ -20,6 +26,7 @@ definePageMeta({
   name: "login",
   layout: false,
 });
+const kir = ref("");
 </script>
 <style scoped>
 .auth-box-shadow {
