@@ -42,7 +42,7 @@ const headerListItems = [
   },
   {
     id: 4,
-    link: "home",
+    link: "kosmos",
     title: "سوالات متداول",
   },
 ];

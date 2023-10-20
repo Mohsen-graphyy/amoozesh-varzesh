@@ -2,14 +2,13 @@
   <section class="flex h-screen justify-center items-center bg-beta-gray-50">
     <div class="flex flex-col bg-white rounded-xl p-5 auth-box-shadow">
       <base-logo title-classes="ml-10 font-bold" />
+      <nuxt-link :to="{ name: 'home' }">bro home</nuxt-link>
     </div>
   </section>
 </template>
 <script setup>
-defineOptions({
-  name: "login",
-});
 definePageMeta({
+  name: "login",
   layout: false,
 });
 </script>

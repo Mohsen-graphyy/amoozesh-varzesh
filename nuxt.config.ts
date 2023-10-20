@@ -12,6 +12,9 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
+  },
   runtimeConfig: {
     API_BASE_URL: process.env.API_BASE_URL,
   },

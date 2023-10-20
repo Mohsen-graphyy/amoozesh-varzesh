@@ -37,13 +37,13 @@ const menuListItems = [
   { id: 2, iconPath: "Search", modalName: "" },
   { id: 3, iconPath: "Menu", modalName: "MenuItemsMain" },
   { id: 4, iconPath: "Shoping", modalName: "MenuItemsShop" },
-  { id: 5, iconPath: "Person", link: "profile" },
+  { id: 5, iconPath: "Person", link: "login" },
 ];
 const selectedItem = ref(null);
 
 function selectItem(menuItem) {
   if (menuItem.link) {
-    navigateTo({ name: menuItem.link });
+    navigateTo({ name: menuItem.link }, { replace: true });
     closeModals();
   } else if (menuItem.modalName) {
     if (isModalOpen(menuItem.modalName)) {
