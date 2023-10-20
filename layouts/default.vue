@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-100">
+  <div class="bg-gray-100 header">
     <header-container />
-    <nuxt-page class="header" />
+    <slot></slot>
     <mobile-menu-box />
     <base-footer />
   </div>
@@ -10,6 +10,6 @@
 <style>
 .header {
   /* 587 */
-  padding: 0 calc(50% - 640px);
+  padding: 0 calc(50% - 800px);
 }
 </style>

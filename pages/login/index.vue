@@ -1,7 +1,10 @@
 <template>
   <section class="flex h-screen justify-center items-center bg-beta-gray-50">
-    <div class="flex flex-col bg-white rounded-xl p-5 auth-box-shadow">
-      <base-logo title-classes="ml-10 font-bold" />
+    <div
+      class="flex flex-col items-center bg-white rounded-xl p-5 auth-box-shadow">
+      <div class="flex justify-center items-center">
+        <base-logo title-classes=" font-bold" />
+      </div>
       <nuxt-link :to="{ name: 'home' }">bro home</nuxt-link>
     </div>
   </section>
