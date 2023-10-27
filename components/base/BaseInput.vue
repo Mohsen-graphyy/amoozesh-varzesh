@@ -26,7 +26,7 @@
         icon-path="Correct"
         class="absolute top-3 left-3 w-6 text-green-500" />
     </div>
-    <Transition name="fade">
+    <Transition name="slide-down-fade">
       <p v-if="errorMessage" class="text-red-500 mt-2 text-sm">
         {{ errorMessage }}
       </p>
@@ -72,3 +72,14 @@ function validate() {
   isValid.value = !errorMessage.value ? true : false;
 }
 </script>
+<style>
+.slide-down-fade-enter-active,
+.slide-down-fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+.slide-down-fade-enter-from,
+.slide-down-fade-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+</style>
