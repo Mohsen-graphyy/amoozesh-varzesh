@@ -16,7 +16,8 @@
         class="w-full"
         title="دریافت کد تایید"
         custom-class="bg-olied-100 text-white w-full !text-sm !p-3"
-        :custom-class="{ '!bg-beta-gray-300': !username && !password }" />
+        :custom-class="{ '!bg-beta-gray-300': !username && !password }"
+        @click="$emit('clicked', 'AuthOtp')" />
       <base-button
         class="w-full"
         title="ورود به سایت"

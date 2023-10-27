@@ -2,7 +2,7 @@
   <section class="flex h-screen justify-center items-center bg-beta-gray-50">
     <div class="relative">
       <base-icon
-        class="w-20 absolute -top-10 z-0 -right-10"
+        class="w-20 absolute -top-10 z-0 -right-10 hidden md:visible"
         icon-path="Booltan"
         svg-class="w-20" />
       <div
