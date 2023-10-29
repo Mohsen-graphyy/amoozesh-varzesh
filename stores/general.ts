@@ -1,9 +1,15 @@
 export const useGenralStore = defineStore("general", {
   state: () => ({
-    counter: 0,
+    username: "",
+    isLogin: false,
   }),
   actions: {
-    // methods
+    setUsername(username: string) {
+      this.username = username;
+    },
+    setIsLogin(isLogin: boolean) {
+      this.isLogin = isLogin;
+    },
   },
   getters: {
     // getters

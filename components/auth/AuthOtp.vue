@@ -4,7 +4,8 @@
     <base-icon icon-path="BlueCircleDivider" svg-class="mt-2 mb-5" />
     <div>
       <p class="text-xs text-beta-gray-150">
-        لطفا کد ارسال شده به شماره <span>09160000000</span> را وارد کنید.
+        لطفا کد ارسال شده به شماره <span>{{ store.username }}</span> را وارد
+        کنید.
       </p>
 
       <OtpInput
@@ -23,40 +24,54 @@
         class="w-full"
         title="ادامه"
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
-        :custom-class="{ '!bg-beta-gray-300': !username && !password }" />
+        :is-disable="!isValid" />
       <base-button
         class="w-full"
-        :title="`${minutes}:${seconds}`"
+        :title="`${
+          secondsLeftToResend !== 0 ? `${minutes}:${seconds}` : 'درخواست مجدد'
+        }`"
         custom-class="border border-solid text-beta-gray-300 w-full  !text-sm !p-3"
-        @click="$emit('clicked', 'AuthSignUp')" />
+        @click="resendCode" />
     </div>
   </div>
 </template>
 
 <script setup>
 import OtpInput from "vue3-otp-input";
+import { useGenralStore } from "~/stores/general";
+
+const emit = defineEmits(["clicked"]);
+const store = useGenralStore();
+
 const otpInput = ref(null);
+const isValid = ref(false);
+const otpCode = 123456;
+let intervalId = setInterval(timer, 1000);
+
 const handleOnComplete = (value) => {
+  if (otpCode === +value) isValid.value = true;
   console.log("OTP completed: ", value);
 };
 const handleOnChange = (value) => {
+  isValid.value = false;
   console.log("OTP changed: ", value);
 };
-const secondsLeftToResend = ref(180);
+const secondsLeftToResend = ref(5);
 const minutes = computed(() => {
   return `${Math.floor(secondsLeftToResend.value / 60)}`.padStart(2, "0");
 });
 const seconds = computed(() => {
   return `${secondsLeftToResend.value % 60}`.padStart(2, "0");
 });
-let intervalId = setInterval(timer, 1000);
+const resendCode = () => {
+  if (secondsLeftToResend.value === 0) {
+    emit("clicked", "AuthSignUp");
+  }
+};
 function timer() {
   secondsLeftToResend.value--;
   if (secondsLeftToResend.value === 0) clearInterval(intervalId);
 }
-const clearInput = () => {
-  otpInput.value.clearInput();
-};
 </script>
 <style>
 .otp-input {
