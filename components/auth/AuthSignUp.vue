@@ -8,16 +8,20 @@
         placeholder="شماره خود را وارد کنید"
         icon="Mobile"
         :rules="[rulePhoneNumber, ruleNotEmpty]"
-        v-model="username" />
+        :is-lazy-validation="false"
+        v-model="username"
+        @validition-state="isValid = $event" />
     </div>
 
     <div class="flex flex-row gap-4 justify-between items-center mt-16">
       <base-button
-        class="w-full"
+        class="w-full rounded-lg"
+        :class="[
+          !isValid ? '!bg-beta-gray-150 !cursor-not-allowed ' : 'bg-olied-100 ',
+        ]"
         title="دریافت کد تایید"
-        custom-class="bg-olied-100 text-white w-full !text-sm !p-3"
-        :custom-class="{ '!bg-beta-gray-300': !username && !password }"
-        @click="$emit('clicked', 'AuthOtp')" />
+        custom-class="text-white w-full !text-sm !p-3"
+        @click="getConfirmCode" />
       <base-button
         class="w-full"
         title="ورود به سایت"
@@ -27,5 +31,12 @@
   </div>
 </template>
 <script setup>
+const emit = defineEmits(["clicked"]);
 const username = ref("");
+const isValid = ref(false);
+const getConfirmCode = () => {
+  if (isValid.value) {
+    emit("clicked", "AuthOtp");
+  } else return;
+};
 </script>

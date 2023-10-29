@@ -37,7 +37,6 @@
 <script setup>
 const props = defineProps({
   icon: { type: String, required: true },
-  isRequired: { type: Boolean, default: false },
   label: { type: String, default: "" },
   id: { type: String, required: true },
   placeholder: { type: String, default: "" },
@@ -51,7 +50,7 @@ const props = defineProps({
 });
 const errorMessage = ref("");
 const isValid = ref(false);
-const emit = defineEmits(["update:modelValue", "error"]);
+const emit = defineEmits(["update:modelValue", "validitionState"]);
 watch(
   () => props.modelValue,
   () => {
@@ -70,6 +69,7 @@ function validate() {
     if (testResult !== true) errorMessage.value = testResult;
   });
   isValid.value = !errorMessage.value ? true : false;
+  emit("validitionState", isValid.value);
 }
 </script>
 <style>
