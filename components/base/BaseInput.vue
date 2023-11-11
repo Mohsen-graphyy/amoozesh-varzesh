@@ -17,8 +17,8 @@
         @input="onInput($event.target.value)"
         @blur="validate" />
       <BaseIcon
-        :icon-path="icon"
         class="absolute top-3 right-3"
+        :icon-path="icon"
         :class="[errorMessage ? 'stroke-red-500' : 'stroke-beta-gray-300']"
         svg-class="w-6" />
       <BaseIcon

@@ -8,7 +8,8 @@
         placeholder="شماره خود را وارد کنید"
         icon="Mobile"
         :rules="[rulePhoneNumber, ruleNotEmpty]"
-        v-model="username" />
+        v-model="username"
+        @validition-state="isValidUsername = $event" />
       <base-password id="password" placeholder="رمز عبور" v-model="password" />
     </div>
     <div
@@ -24,7 +25,7 @@
         class="w-full"
         title="ورود"
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
-        :custom-class="{ '!bg-beta-gray-300': !username && !password }" />
+        :is-disable="!isValidUsername || !password" />
       <base-button
         class="w-full"
         title="ثبت نام"
@@ -36,4 +37,6 @@
 <script setup>
 const username = ref("");
 const password = ref("");
+const isValidUsername = ref(false);
+const isValidPassword = ref(false);
 </script>

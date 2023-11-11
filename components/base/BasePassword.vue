@@ -37,7 +37,6 @@
 
 <script setup>
 const props = defineProps({
-  icon: { type: String, required: true },
   isRequired: { type: Boolean, default: false },
   label: { type: String, default: "" },
   id: { type: String, required: true },
@@ -48,7 +47,7 @@ const props = defineProps({
 });
 const errorMessage = ref("");
 const showPassword = ref(false);
-const emit = defineEmits(["update:modelValue", "error"]);
+const emit = defineEmits(["update:modelValue", "validitionState"]);
 watch(
   () => props.modelValue,
   () => {
@@ -64,7 +63,10 @@ function onInput(value) {
 function validate() {
   props.rules.forEach((pattern) => {
     const testResult = pattern(props.modelValue);
-    if (testResult !== true) errorMessage.value = testResult;
+    if (testResult !== true) {
+      errorMessage.value = testResult;
+    }
+    emit("validitionState", !errorMessage.value);
   });
 }
 </script>
