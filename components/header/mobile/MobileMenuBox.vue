@@ -41,12 +41,18 @@ const menuListItems = [
 ];
 const selectedItem = ref(null);
 
+const isModalOpen = computed(() => (modalName) => {
+  return !selectedItem.value
+    ? false
+    : selectedItem.value.modalName === modalName;
+});
+
 function selectItem(menuItem) {
   if (menuItem.link) {
     navigateTo({ name: menuItem.link }, { replace: true });
     closeModals();
   } else if (menuItem.modalName) {
-    if (isModalOpen(menuItem.modalName)) {
+    if (isModalOpen.value(menuItem.modalName)) {
       closeModals();
     } else {
       selectedItem.value = menuItem;
@@ -55,8 +61,5 @@ function selectItem(menuItem) {
 }
 function closeModals() {
   selectedItem.value = null;
-}
-function isModalOpen(modalName) {
-  return selectedItem.value && selectedItem.value.modalName === modalName;
 }
 </script>

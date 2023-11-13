@@ -14,6 +14,7 @@
   </base-mobile-modal-menu>
 </template>
 <script setup>
+defineEmits(["close"]);
 defineProps({
   isModalOpen: {
     type: Boolean,

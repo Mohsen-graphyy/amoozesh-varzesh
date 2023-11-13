@@ -9,6 +9,8 @@
   </transition>
 </template>
 <script setup>
+defineEmits(["outside-click"]);
+
 defineProps({
   isModalOpen: {
     type: Boolean,
