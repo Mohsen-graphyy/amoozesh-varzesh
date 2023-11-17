@@ -16,7 +16,10 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
   },
   runtimeConfig: {
-    API_BASE_URL: process.env.API_BASE_URL,
+    public: {
+      baseUrl: process.env.BASE_URL,
+      baseApiUrl: process.env.BASE_API_URL,
+    },
   },
   pages: true,
   postcss: {
