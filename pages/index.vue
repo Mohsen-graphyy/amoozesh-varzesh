@@ -14,4 +14,11 @@
 definePageMeta({
   name: "home",
 });
+const kir = ref("");
+async function getCourse() {
+  const kiiir = await $fetch("https://random-data-api.com/api/v2/users");
+  kir.value = kiiir;
+  console.log(kir.value);
+}
+getCourse();
 </script>
