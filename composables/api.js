@@ -6,7 +6,7 @@ export const useApi = (url, method = "get", options = {}) => {
     retry: 3,
     retryDelay: 500,
     timeout: 13000,
-    // credentials: 'include',
+    // credentials: "include",
     headers: {
       "X-Requested-With": "XMLHttpRequest",
       Accept: "application/json",

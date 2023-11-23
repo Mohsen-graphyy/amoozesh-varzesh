@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: ["@nuxt/image", ["@pinia/nuxt", { autoImports: ["defineStore"] }]],
   ssr: true,
   devtools: { enabled: true },
-  css: ["~/assets/css/main.css"],
+  css: ["~/assets/css/styles.css"],
   components: [
     {
       path: "~/components",
