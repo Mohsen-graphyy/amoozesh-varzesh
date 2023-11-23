@@ -23,3 +23,12 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   nuxtApp.vueApp.use(Toast, options);
 });
+
+/*
+  toast methods : [
+    success,
+    info,
+    warning,
+    error,
+  ]
+*/
