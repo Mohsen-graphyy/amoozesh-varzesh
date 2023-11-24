@@ -37,7 +37,7 @@ export const useApi = (url, method = "get", options = {}) => {
             },
           });
           const token = useCookie("token", {
-            maxAge: 20,
+            maxAge: 5 * 60,
             path: "/",
           });
           token.value = tokenData.value.access_token;

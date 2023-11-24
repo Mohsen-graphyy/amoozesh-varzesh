@@ -1,8 +1,8 @@
 <template>
-  <div>kosmos</div>
+  <div>contact-us</div>
 </template>
 <script setup>
 definePageMeta({
-  name: "kosmos",
+  name: "contact-us",
 });
 </script>

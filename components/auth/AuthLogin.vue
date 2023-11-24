@@ -60,7 +60,7 @@ async function login() {
     path: "/",
   });
   const token = useCookie("token", {
-    maxAge: 20,
+    maxAge: 5 * 60,
   });
 
   refreshToken.value = auth.refresh_token;
