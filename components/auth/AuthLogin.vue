@@ -8,6 +8,7 @@
         placeholder="شماره خود را وارد کنید"
         icon="Mobile"
         :rules="[rulePhoneNumber, ruleNotEmpty]"
+        :extraErorrMessage="kir"
         v-model="username"
         @validition-state="isValidUsername = $event" />
       <base-password id="password" placeholder="رمز عبور" v-model="password" />
@@ -25,7 +26,8 @@
         class="w-full"
         title="ورود"
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
-        :is-disable="!isValidUsername || !password" />
+        :is-disable="!isValidUsername || !password"
+        @click="login" />
       <base-button
         class="w-full"
         title="ثبت نام"
@@ -35,8 +37,35 @@
   </div>
 </template>
 <script setup>
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
 const username = ref("");
 const password = ref("");
 const isValidUsername = ref(false);
-const isValidPassword = ref(false);
+
+async function login() {
+  const auth = await useApi(serviceAuth.login, "POST", {
+    body: {
+      phone_number: username.value,
+      password: password.value,
+    },
+    onResponseError({ response }) {
+      toast.error(response._data.detail[0]);
+    },
+  });
+
+  const refreshToken = useCookie("refresh_token", {
+    maxAge: 10 * 365 * 24 * 60 * 60,
+    path: "/",
+  });
+  const token = useCookie("token", {
+    maxAge: 20,
+  });
+
+  refreshToken.value = auth.refresh_token;
+  token.value = auth.access_token;
+  toast.success("ورود با موفقیت انجام شد");
+  navigateTo({ name: "home" });
+}
 </script>

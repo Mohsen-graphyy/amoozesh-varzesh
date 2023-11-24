@@ -6,7 +6,22 @@
     <base-footer />
   </div>
 </template>
-
+<script setup>
+const tokenInit = async () => {
+  const refreshTokenCookie = useCookie("refresh_token");
+  const tokenData = await useApi(serviceAuth.getRefreshToken, "POST", {
+    body: {
+      refresh_token: refreshTokenCookie.value,
+    },
+  });
+  // const token = useCookie("token", {
+  //   maxAge: 20,
+  //   path: "/",
+  // });
+  // token.value = tokenData.access_token;
+};
+tokenInit();
+</script>
 <style>
 .header {
   /* 587 */

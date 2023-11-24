@@ -9,7 +9,10 @@
     <div class="relative">
       <input
         class="w-full rounded-lg h-12 bg-beta-gray-50 border border-solid outline-none pr-11 placeholder:text-beta-gray-150 placeholder:text-sm"
-        :class="{ 'border-red-500': errorMessage, 'border-green-500': isValid }"
+        :class="{
+          'border-red-500': extraErorrMessage || errorMessage,
+          'border-green-500': isValid,
+        }"
         type="text"
         :id="id"
         :placeholder="placeholder"
@@ -19,7 +22,11 @@
       <BaseIcon
         class="absolute top-3 right-3"
         :icon-path="icon"
-        :class="[errorMessage ? 'stroke-red-500' : 'stroke-beta-gray-300']"
+        :class="[
+          extraErorrMessage || errorMessage
+            ? 'stroke-red-500'
+            : 'stroke-beta-gray-300',
+        ]"
         svg-class="w-6" />
       <BaseIcon
         v-if="isValid"
@@ -27,8 +34,10 @@
         class="absolute top-3 left-3 w-6 text-green-500" />
     </div>
     <Transition name="slide-down-fade">
-      <p v-if="errorMessage" class="text-red-500 mt-2 text-sm">
-        {{ errorMessage }}
+      <p
+        v-if="extraErorrMessage || errorMessage"
+        class="text-red-500 mt-2 text-sm">
+        {{ extraErorrMessage || errorMessage }}
       </p>
     </Transition>
   </div>
@@ -47,6 +56,7 @@ const props = defineProps({
     type: [String, Array, Object],
     default: "",
   },
+  extraErorrMessage: { type: String, default: "" },
 });
 const errorMessage = ref("");
 const isValid = ref(false);
@@ -68,7 +78,8 @@ function validate() {
     const testResult = pattern(props.modelValue);
     if (testResult !== true) errorMessage.value = testResult;
   });
-  isValid.value = !errorMessage.value ? true : false;
+  isValid.value =
+    !errorMessage.value && !props.extraErorrMessage ? true : false;
   emit("validitionState", isValid.value);
 }
 </script>
