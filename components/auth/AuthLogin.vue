@@ -8,7 +8,6 @@
         placeholder="شماره خود را وارد کنید"
         icon="Mobile"
         :rules="[rulePhoneNumber, ruleNotEmpty]"
-        :extraErorrMessage="kir"
         v-model="username"
         @validition-state="isValidUsername = $event" />
       <base-password id="password" placeholder="رمز عبور" v-model="password" />

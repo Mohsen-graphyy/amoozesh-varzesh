@@ -24,7 +24,8 @@
         class="w-full"
         title="ادامه"
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
-        :is-disable="!isValid" />
+        :is-disable="!isValid"
+        @click="$emit('clicked', 'AuthSetPassword')" />
       <base-button
         class="w-full"
         :title="`${
@@ -38,25 +39,22 @@
 
 <script setup>
 import OtpInput from "vue3-otp-input";
-import { useGenralStore } from "~/stores/general";
 
 const emit = defineEmits(["clicked"]);
 const store = useGenralStore();
 
 const otpInput = ref(null);
 const isValid = ref(false);
-const otpCode = 123456;
 let intervalId = setInterval(timer, 1000);
 
 const handleOnComplete = (value) => {
-  if (otpCode === +value) isValid.value = true;
-  console.log("OTP completed: ", value);
+  store.setOtpCode(value);
+  isValid.value = true;
 };
 const handleOnChange = (value) => {
   isValid.value = false;
-  console.log("OTP changed: ", value);
 };
-const secondsLeftToResend = ref(5);
+const secondsLeftToResend = ref(2 * 60);
 const minutes = computed(() => {
   return `${Math.floor(secondsLeftToResend.value / 60)}`.padStart(2, "0");
 });

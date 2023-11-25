@@ -28,4 +28,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  imports: {
+    dirs: ["./stores"],
+  },
+  build: {
+    transpile: ["vue-toastification"],
+  },
 });

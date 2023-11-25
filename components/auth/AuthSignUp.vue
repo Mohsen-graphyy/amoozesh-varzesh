@@ -31,6 +31,7 @@
 <script setup>
 import { useToast } from "vue-toastification";
 const toast = useToast();
+const store = useGenralStore();
 const emit = defineEmits(["clicked"]);
 
 const username = ref("");
@@ -47,6 +48,7 @@ const getConfirmCode = async () => {
         },
       });
       emit("clicked", "AuthOtp");
+      store.setUsername(username.value);
     } catch (e) {
       console.log(e);
     }

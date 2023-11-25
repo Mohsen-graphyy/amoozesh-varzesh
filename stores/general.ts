@@ -1,14 +1,14 @@
 export const useGenralStore = defineStore("general", {
   state: () => ({
     username: "",
-    isLogin: false,
+    otpCode: "",
   }),
   actions: {
     setUsername(username: string) {
       this.username = username;
     },
-    setIsLogin(isLogin: boolean) {
-      this.isLogin = isLogin;
+    setOtpCode(otpCode: string) {
+      this.otpCode = otpCode;
     },
   },
   getters: {
