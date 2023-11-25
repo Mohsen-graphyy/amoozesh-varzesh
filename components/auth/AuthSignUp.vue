@@ -29,17 +29,27 @@
   </div>
 </template>
 <script setup>
-import { useGenralStore } from "~/stores/general";
+import { useToast } from "vue-toastification";
+const toast = useToast();
 const emit = defineEmits(["clicked"]);
-const store = useGenralStore();
 
 const username = ref("");
 const isValid = ref(false);
-const getConfirmCode = () => {
+const getConfirmCode = async () => {
   if (isValid.value) {
-    // store.setUsername(username.value);
-    store.setUsername(username.value);
-    emit("clicked", "AuthOtp");
+    try {
+      await useApi(serviceAuth.registerUser, "post", {
+        body: {
+          phone_number: username.value,
+        },
+        onResponseError({ response }) {
+          toast.error(response._data.detail[0]);
+        },
+      });
+      emit("clicked", "AuthOtp");
+    } catch (e) {
+      console.log(e);
+    }
   } else return;
 };
 </script>
