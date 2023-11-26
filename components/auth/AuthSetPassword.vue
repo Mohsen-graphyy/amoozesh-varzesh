@@ -15,7 +15,7 @@
     <div class="flex flex-row gap-4 justify-between items-center mt-16">
       <base-button
         class="w-full"
-        title="تکمیل ثبت نام"
+        :title="isRestPassword ? 'تایید' : 'تکمیل ثبت نام'"
         custom-class="bg-olied-50 text-white w-full !text-sm !p-3"
         :is-disable="!password && !confirmPassword"
         @click="createPassword" />
@@ -43,16 +43,22 @@ const confirmPassword = ref("");
 const createPassword = async () => {
   if (password.value && confirmPassword.value) {
     try {
-      await useApi(serviceAuth.setPassword, "post", {
-        body: {
-          code: store.otpCode,
-          password: password.value,
-          password_confirm: confirmPassword.value,
-        },
-        onResponseError({ response }) {
-          toast.error(response._data.detail[0]);
-        },
-      });
+      await useApi(
+        props.isRestPassword
+          ? serviceAuth.setResetPassword
+          : serviceAuth.setPassword,
+        "post",
+        {
+          body: {
+            code: store.otpCode,
+            password: password.value,
+            password_confirm: confirmPassword.value,
+          },
+          onResponseError({ response }) {
+            toast.error(response._data.detail[0]);
+          },
+        }
+      );
       navigateTo({ name: "login" });
     } catch (e) {
       console.log(e);

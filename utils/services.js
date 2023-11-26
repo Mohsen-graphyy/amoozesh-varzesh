@@ -3,4 +3,6 @@ export const serviceAuth = {
   getRefreshToken: "accounts/api/v1/refresh-token/",
   registerUser: "/accounts/api/v1/register/",
   setPassword: "accounts/api/v1/verify_otp_set_password/",
+  resetPassword: "accounts/api/v1/reset_password/",
+  setResetPassword: "accounts/api/v1otp_verify_set_reset_password/",
 };

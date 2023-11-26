@@ -22,10 +22,12 @@
         custom-class="bg-olied-50 text-white w-full !text-sm !p-3"
         :is-disable="!isValid"
         @click="getConfirmCode" />
-      <nuxt-link :to="{ name: 'login' }" class="w-full">
+      <nuxt-link
+        :to="{ name: isSetPassword ? 'register' : 'login' }"
+        class="w-full">
         <base-button
           class="w-full"
-          title="ورود به سایت"
+          :title="isSetPassword ? 'ثبت نام' : 'ورود به سایت'"
           custom-class="border border-solid text-beta-gray-300 w-full !text-sm" />
       </nuxt-link>
     </div>
@@ -51,15 +53,20 @@ const isValid = ref(false);
 const getConfirmCode = async () => {
   if (isValid.value) {
     try {
-      // isSetPassword
-      await useApi(serviceAuth.registerUser, "post", {
-        body: {
-          phone_number: username.value,
-        },
-        onResponseError({ response }) {
-          toast.error(response._data.detail[0]);
-        },
-      });
+      await useApi(
+        props.isSetPassword
+          ? serviceAuth.resetPassword
+          : serviceAuth.registerUser,
+        "post",
+        {
+          body: {
+            phone_number: username.value,
+          },
+          onResponseError({ response }) {
+            toast.error(response._data.detail[0]);
+          },
+        }
+      );
       emit("update:modelValue", "otp");
       store.setUsername(username.value);
     } catch (e) {
