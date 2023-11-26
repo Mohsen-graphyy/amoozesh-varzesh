@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="mt-6">تعیین رمز عبور</p>
+    <p class="mt-6">
+      {{ isRestPassword ? "تغییر رمز عبور" : " تعیین رمز عبور" }}
+    </p>
     <base-icon icon-path="BlueCircleDivider" svg-class="mt-2 mb-5" />
     <div class="flex flex-col gap-4">
       <base-password id="password" placeholder="رمز عبور" v-model="password" />
@@ -24,8 +26,17 @@
 import { useToast } from "vue-toastification";
 const toast = useToast();
 const store = useGenralStore();
-const emit = defineEmits(["clicked"]);
-
+const emit = defineEmits(["update:modelValue"]);
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  isRestPassword: {
+    type: Boolean,
+    default: false,
+  },
+});
 const password = ref("");
 const confirmPassword = ref("");
 
@@ -42,9 +53,7 @@ const createPassword = async () => {
           toast.error(response._data.detail[0]);
         },
       });
-      reloadNuxtApp({
-        name: "login",
-      });
+      navigateTo({ name: "login" });
     } catch (e) {
       console.log(e);
     }

@@ -18,7 +18,9 @@
         <input type="checkbox" name="remember-me" id="remember-me" />
         <span>مرا به خاطر بسپار</span>
       </div>
-      <p>فراموشی رمز</p>
+      <nuxt-link :to="{ name: 'setPassword' }" class="cursor-pointer">
+        فراموشی رمز
+      </nuxt-link>
     </div>
     <div class="flex flex-row gap-4 justify-between items-center mt-16">
       <base-button
@@ -27,16 +29,21 @@
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
         :is-disable="!isValidUsername || !password"
         @click="login" />
-      <base-button
-        class="w-full"
-        title="ثبت نام"
-        custom-class="border border-solid text-beta-gray-300 w-full  !text-sm !p-3"
-        @click="$emit('clicked', 'AuthSignUp')" />
+      <nuxt-link :to="{ name: 'register' }" class="w-full">
+        <base-button
+          class="w-full"
+          title="ثبت نام"
+          custom-class="border border-solid text-beta-gray-300 !w-full !text-sm !p-3" />
+      </nuxt-link>
     </div>
   </div>
 </template>
 <script setup>
 import { useToast } from "vue-toastification";
+definePageMeta({
+  name: "login",
+  layout: "auth",
+});
 const toast = useToast();
 
 const username = ref("");

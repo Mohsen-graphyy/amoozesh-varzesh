@@ -11,9 +11,7 @@
           <base-logo title-classes="font-bold" />
         </div>
         <div class="flex flex-row">
-          <Transition name="fade" mode="out-in">
-            <component :is="currentComponent" @clicked="changeComponent" />
-          </Transition>
+          <slot></slot>
         </div>
       </div>
       <div class="flex items-center mt-3">
@@ -26,10 +24,6 @@
   </section>
 </template>
 <script setup>
-definePageMeta({
-  name: "login",
-  layout: false,
-});
 const currentComponent = shallowRef(null);
 
 changeComponent("AuthLogin");
@@ -44,14 +38,5 @@ function changeComponent(nextComponent) {
 <style scoped>
 .auth-box-shadow {
   box-shadow: 0px 0px 40px -12px rgba(71, 85, 105, 0.13);
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

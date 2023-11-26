@@ -25,7 +25,7 @@
         title="ادامه"
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
         :is-disable="!isValid"
-        @click="$emit('clicked', 'AuthSetPassword')" />
+        @click="$emit('update:modelValue', 'password')" />
       <base-button
         class="w-full"
         :title="`${
@@ -40,7 +40,17 @@
 <script setup>
 import OtpInput from "vue3-otp-input";
 
-const emit = defineEmits(["clicked"]);
+const emit = defineEmits(["update:modelValue"]);
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  isSetPassword: {
+    type: Boolean,
+    default: false,
+  },
+});
 const store = useGenralStore();
 
 const otpInput = ref(null);
@@ -63,7 +73,7 @@ const seconds = computed(() => {
 });
 const resendCode = () => {
   if (secondsLeftToResend.value === 0) {
-    emit("clicked", "AuthSignUp");
+    emit("update:modelValue", "register");
   }
 };
 function timer() {
