@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <slot name="subtitle"></slot>
-    <h1 class="font-bold text-2xl">{{ title }}</h1>
+    <h1 class="font-bold text-2xl" :class="titleClass">{{ title }}</h1>
     <base-icon icon-path="CircleDivider" />
     <p
       v-if="content"
@@ -24,6 +24,10 @@ defineProps({
     default: "",
   },
   paragraphClass: {
+    type: String,
+    default: "",
+  },
+  titleClass: {
     type: String,
     default: "",
   },

@@ -18,7 +18,7 @@
           icon-path="Person"
           :has-icon="true" />
       </nuxt-link>
-      <nuxt-link v-else>
+      <nuxt-link v-else :to="{ name: 'profile' }">
         <base-button
           title="محسن پیری"
           class=""
@@ -40,7 +40,7 @@ const headerListItems = [
   },
   {
     id: 2,
-    link: "home",
+    link: "aboutUs",
     title: "درباره ما",
   },
   {
