@@ -1,5 +1,6 @@
 <template>
   <section class="!py-32 flex flex-col mx-4 md:mx-20">
+    <BaseBreadCrumbs />
     <div class="flex flex-col md:flex-row justify-between items-center gap-20">
       <BaseParagraph
         class="basis-1/2"
@@ -65,6 +66,7 @@
 <script setup>
 definePageMeta({
   name: "aboutUs",
+  breadcrumbs: "درباره ما",
 });
 const employes = [
   {
