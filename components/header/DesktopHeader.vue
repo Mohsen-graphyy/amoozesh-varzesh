@@ -45,12 +45,12 @@ const headerListItems = [
   },
   {
     id: 3,
-    link: "home",
+    link: "contactUs",
     title: "ارتباط با ما",
   },
   {
     id: 4,
-    link: "contact-us",
+    link: "faq",
     title: "سوالات متداول",
   },
 ];

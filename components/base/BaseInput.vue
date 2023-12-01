@@ -6,7 +6,7 @@
       class="text-tiny text-dark font-bold mb-4"
       >{{ label }}</label
     >
-    <div class="relative">
+    <div v-if="$attrs.type !== 'textarea'" class="relative">
       <input
         class="w-full rounded-lg h-12 bg-beta-gray-50 border border-solid outline-none pr-11 placeholder:text-beta-gray-150 placeholder:text-sm"
         :class="{
@@ -33,6 +33,16 @@
         icon-path="Correct"
         class="absolute top-3 left-3 w-6 text-green-500" />
     </div>
+    <textarea
+      v-else
+      v-bind="$attrs"
+      class="resize-none p-4 w-full rounded-lg bg-beta-gray-50 border border-solid outline-none placeholder:text-beta-gray-150 placeholder:text-sm"
+      :id="id"
+      rows="5"
+      :placeholder="placeholder"
+      :value="modelValue"
+      @input="onInput($event.target.value)"
+      @blur="validate"></textarea>
     <Transition name="slide-down-fade">
       <p
         v-if="extraErorrMessage || errorMessage"
