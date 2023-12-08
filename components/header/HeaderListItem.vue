@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="{ name: link }"
-    class="font-thin hover:text-beta-green-100"
+    class="font-thin hover:md:text-beta-green-100"
     :class="{ '!text-beta-green-100 !font-bold': $route.name === link }"
     >{{ title }}</NuxtLink
   >

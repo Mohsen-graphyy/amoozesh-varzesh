@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <base-logo title-classes="ml-10 font-bold" />
         <header-list-item
-          v-for="headerItem in headerListItems"
+          v-for="headerItem in menuItems"
           :key="headerItem.id"
           class="ml-6 text-gray-500 !text-sm"
           :link="headerItem.link"
@@ -30,28 +30,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const headerListItems = [
-  {
-    id: 1,
-    link: "home",
-    title: "خانه",
-  },
-  {
-    id: 2,
-    link: "aboutUs",
-    title: "درباره ما",
-  },
-  {
-    id: 3,
-    link: "contactUs",
-    title: "ارتباط با ما",
-  },
-  {
-    id: 4,
-    link: "faq",
-    title: "سوالات متداول",
-  },
-];
-</script>
