@@ -21,7 +21,9 @@
         :to="{ name: crumb.name }"
         class="text-beta-gray-150"
         :class="{ 'text-beta-gray-500': index === crumbsRoute.length - 1 }"
-        >{{ crumb.meta.breadcrumbs }}</nuxt-link
+        >{{
+          crumb.meta.breadcrumbs ? crumb.meta.breadcrumbs : extraCrumbs
+        }}</nuxt-link
       >
     </li>
   </ul>
@@ -29,7 +31,12 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
-
+defineProps({
+  extraCrumbs: {
+    type: String,
+    default: "",
+  },
+});
 const crumbsRoute = computed(() => {
   let fullPath = "";
   const routes = route.fullPath.substring(1).split("/");
