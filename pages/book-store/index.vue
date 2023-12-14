@@ -1,13 +1,14 @@
 <template>
   <section class="!py-32 flex flex-col mx-4 md:mx-20">
     <BaseBreadCrumbs />
-    <div
-      class="flex flex-col lg:flex-row justify-between lg:items-center gap-10 mt-10">
+    <div class="flex flex-col justify-between gap-10 mt-10">
       <div>
         <h1 class="font-bold">کتاب های علوم ورزشی</h1>
         <base-icon icon-path="BlueCircleDivider" />
       </div>
-      <BookContainer />
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-warp">
+        <BookContainer v-for="book in books" :key="book.id" :book="book" />
+      </div>
     </div>
   </section>
 </template>
@@ -19,24 +20,54 @@ definePageMeta({
 useHead({
   title: "خرید کتاب",
 });
-const accessListItems = [
+const books = [
   {
     id: 1,
-    iconPath: "Phone",
-    title: "09369654226",
-    subtitle: "پاسخگوی شما در ساعات 8 الی 17",
+    image: "/images/book1.png",
+    alt: "alt",
+    book_slug: "کتاب استخدامی دبیری تربیت بدنی",
+    title: "کتاب استخدامی دبیری تربیت بدنی",
+    price: 270000,
   },
   {
     id: 2,
-    iconPath: "Instagram",
-    title: "Amoozeshvarzeshcom",
-    subtitle: "صفحه ما را دنبال کنید",
+    image: "/images/book1.png",
+    alt: "alt",
+    book_slug: "فیزیولوژی و تغذیه ورزشی",
+    title: "فیزیولوژی و تغذیه ورزشی",
+    price: 99000,
   },
   {
     id: 3,
-    iconPath: "Mail",
-    title: "info@amoozeshvarzesh.com",
-    subtitle: "پست الکترونیکی ما",
+    image: "/images/book1.png",
+    alt: "alt",
+    book_slug: "کتاب تست آمار، سنجش و اندازه گیری",
+    title: "کتاب تست آمار، سنجش و اندازه گیری",
+    price: 199000,
+  },
+  {
+    id: 4,
+    image: "/images/book1.png",
+    alt: "alt",
+    book_slug: "کتاب تست آسیب شناسی ورزشی و حرکت اصلاحی",
+    title: "کتاب تست آسیب شناسی ورزشی و حرکت اصلاحی",
+    price: 299000,
+  },
+  {
+    id: 5,
+    image: "/images/book1.png",
+    alt: "alt",
+    book_slug: "کتاب بزرگ آناتومی بدنسازی بانوان",
+    title: "کتاب بزرگ آناتومی بدنسازی بانوان",
+    price: 179000,
+  },
+  {
+    id: 6,
+    image: "/images/book1.png",
+    alt: "alt",
+    book_slug: "کتاب تغذیه ورزشی ویژه کسب مدال طلا",
+    title: "کتاب تغذیه ورزشی ویژه کسب مدال طلا",
+    price: 259000,
   },
 ];
 </script>
