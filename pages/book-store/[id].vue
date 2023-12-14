@@ -2,8 +2,9 @@
   <section class="!py-32 flex flex-col mx-4 md:mx-20">
     <BaseBreadCrumbs :extra-crumbs="bookInfo.slug" />
     <div
-      class="flex flex-col lg:flex-row-reverse justify-between lg:items-start gap-4 mt-10">
-      <div class="flex flex-col lg:basis-2/6 gap-4 bg-white p-4 rounded-lg">
+      class="flex flex-col h-full lg:flex-row-reverse lg:items-start justify-between gap-4 mt-10">
+      <div
+        class="relative flex flex-col lg:basis-2/6 gap-4 bg-white p-4 rounded-lg">
         <NuxtImg
           :src="bookInfo.image"
           width="313"
@@ -43,23 +44,28 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col lg:basis-4/6 bg-white p-4 rounded-lg gap-6">
-        <div>
-          <h1 class="font-bold text-xl mb-1">{{ bookInfo.title }}</h1>
-          <BaseIcon icon-path="BlueCircleDivider" />
+      <div class="flex flex-col lg:basis-4/6 gap-6">
+        <div class="flex flex-col bg-white p-4 rounded-lg gap-6">
+          <div>
+            <h1 class="font-bold text-xl mb-1">{{ bookInfo.title }}</h1>
+            <BaseIcon icon-path="BlueCircleDivider" />
+          </div>
+          <div>star</div>
+          <div class="flex items-center">
+            <BaseIcon
+              icon-path="Book"
+              svg-class="stroke-beta-gray-300 w-4 h-4" />
+            <p class="text-beta-gray-300">
+              حوزه کتاب :
+              <span class="text-olied-100 font-semibold">{{
+                bookInfo.type
+              }}</span>
+            </p>
+          </div>
+          <BookItems :book-items="bookInfo.writers" title="نویسندگان" />
+          <BookItems :book-items="bookInfo.bookDetails" title="محتوای کتاب" />
         </div>
-        <div>star</div>
-        <div class="flex items-center">
-          <BaseIcon icon-path="Book" svg-class="stroke-beta-gray-300 w-4 h-4" />
-          <p class="text-beta-gray-300">
-            حوزه کتاب :
-            <span class="text-olied-100 font-semibold">{{
-              bookInfo.type
-            }}</span>
-          </p>
-        </div>
-        <BookItems :book-items="bookInfo.writers" title="نویسندگان" />
-        <BookItems :book-items="bookInfo.bookDetails" title="محتوای کتاب" />
+        <BookDetails />
       </div>
     </div>
   </section>
