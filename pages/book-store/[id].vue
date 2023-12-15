@@ -51,7 +51,9 @@
             <h1 class="font-bold text-xl mb-1">{{ bookInfo.title }}</h1>
             <BaseIcon icon-path="BlueCircleDivider" />
           </div>
-          <div>star</div>
+          <div>
+            <BaseStar :rate="4" />
+          </div>
           <div class="flex items-center">
             <BaseIcon
               icon-path="Book"
