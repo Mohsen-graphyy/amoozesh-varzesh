@@ -1,5 +1,6 @@
 <template>
   <Carousel
+    ref="slider"
     :items-to-show="1"
     :wrap-around="true"
     snap-align="start"
@@ -19,6 +20,12 @@
 <script setup>
 import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+const slider = ref(null);
+onMounted(() => {
+  setTimeout(() => {
+    slider.value.updateSlideWidth();
+  }, 1000);
+});
 const books = [
   {
     id: 1,
