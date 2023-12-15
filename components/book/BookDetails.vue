@@ -33,8 +33,6 @@
   </div>
 </template>
 <script setup>
-const isflag = ref(true);
-
 const detailHeaders = [
   {
     id: 1,
