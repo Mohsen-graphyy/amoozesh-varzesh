@@ -69,6 +69,7 @@
           <BookItems :book-items="bookInfo.bookDetails" title="محتوای کتاب" />
         </div>
         <BookDetails />
+        <BaseCarousel />
       </div>
     </div>
   </section>

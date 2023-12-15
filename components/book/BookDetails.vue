@@ -15,7 +15,7 @@
               : 'stroke-beta-gray-500 w-4 h-4'
           " />
         <p
-          class="text-beta-gray-500 md:text-sm"
+          class="text-beta-gray-500 text-sm"
           :class="{
             'text-beta-green-100 font-semibold':
               detailHeader.component === selecetedComponent,
