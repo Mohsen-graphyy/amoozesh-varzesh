@@ -30,14 +30,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-const store = useGenralStore();
+const token = useCookie("token");
 const menuListItems = [
   { id: 1, iconPath: "Home", link: "home" },
   { id: 2, iconPath: "Search", modalName: "" },
   { id: 3, iconPath: "Menu", modalName: "MenuItemsMain" },
   { id: 4, iconPath: "Shoping", modalName: "MenuItemsShop" },
-  { id: 5, iconPath: "Person", link: isLogin ? "profile" : "login" },
+  { id: 5, iconPath: "Person", link: token.value ? "profile" : "login" },
 ];
 const selectedItem = ref(null);
 

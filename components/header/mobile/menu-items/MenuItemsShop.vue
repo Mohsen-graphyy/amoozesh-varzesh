@@ -9,7 +9,8 @@
         :key="headerItem.id"
         class="mb-3 text-gray-500"
         :link="headerItem.link"
-        :title="headerItem.title" />
+        :title="headerItem.title"
+        @click="$emit('close')" />
     </div>
   </base-mobile-modal-menu>
 </template>
