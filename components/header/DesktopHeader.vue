@@ -18,7 +18,7 @@
           icon-path="Person"
           :has-icon="true" />
       </nuxt-link>
-      <nuxt-link v-else :to="{ name: 'profile' }">
+      <nuxt-link v-else :to="{ name: 'personalInfo' }">
         <base-button
           title="محسن پیری"
           class=""

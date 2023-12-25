@@ -46,7 +46,10 @@ const crumbsRoute = computed(() => {
     .map((route) => {
       if (route) {
         fullPath = `${fullPath}/${route}`;
-        return router.resolve(fullPath);
+        const resolvedRoute = router.resolve(fullPath);
+        if (resolvedRoute.name !== undefined) {
+          return router.resolve(fullPath);
+        }
       }
     })
     .filter(Boolean);
