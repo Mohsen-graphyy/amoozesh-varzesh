@@ -1,11 +1,12 @@
 <template>
   <ProfileLayoutContainer>
+    favourites
     <UserInfoPersonalInfo />
   </ProfileLayoutContainer>
 </template>
 <script setup>
 definePageMeta({
-  name: "personalInfo",
-  breadcrumbs: "ویرایش حساب کاربری",
+  name: "profileFavourites",
+  breadcrumbs: "علاقه مندی ها",
 });
 </script>

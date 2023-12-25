@@ -3,15 +3,19 @@
     class="flex items-center justify-between"
     :to="{ name: navLinks.routes[0] }"
     @click="$emit('clicked')">
-    <div class="flex items-center w-full">
+    <div
+      class="flex items-center w-full py-2 px-3 gap-3"
+      :class="{ 'bg-white  rounded-xl text-beta-green-100': checkIsActive }">
       <BaseIcon
         v-if="navLinks.icon"
-        class="ml-16"
-        size="28px"
-        :name="navLinks.icon"
-        :stroke-color="checkIsActive ? 'blue' : 'grey'" />
+        :icon-path="navLinks.icon"
+        :svg-class="
+          checkIsActive
+            ? 'w-5 h-5 stroke-beta-green-100'
+            : 'w-5 h-5 stroke-white'
+        " />
 
-      <span class="font-medium md:text-base">
+      <span class="font-bold md:text-base">
         {{ navLinks.title }}
       </span>
     </div>

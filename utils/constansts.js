@@ -22,23 +22,51 @@ export const menuItems = [
 ];
 export const dashboard = [
   {
-    id: "CourseInfo",
-    title: "اطلاعات کلی",
-    routes: ["CourseInfo"],
+    id: "profileDashboard",
+    title: "پیشخوان",
+    icon: "Home",
+    routes: ["profileDashboard"],
   },
   {
-    id: "CourseDetailsPage",
-    title: "جزییات",
-    routes: ["CourseDetailsPage"],
+    id: "profileCourses",
+    title: "دوره های من",
+    icon: "Education",
+    routes: ["profileCourses"],
   },
   {
-    id: "CoursePrerequisitesPage",
-    title: "پیش‌نیازها",
-    routes: ["CoursePrerequisitesPage"],
+    id: "profileFinancial",
+    title: "امور مالی",
+    icon: "Price",
+    routes: ["profileFinancial"],
   },
   {
-    id: "CourseChapters",
-    title: "ویرایش فصل‌ها",
-    routes: ["CourseChapters"],
+    id: "profileBooks",
+    title: "کتاب های خریداری شده",
+    icon: "Book",
+    routes: ["profileBooks"],
+  },
+  {
+    id: "profileTicket",
+    title: " تیکت‌های من",
+    icon: "Mail",
+    routes: ["profileTicket"],
+  },
+  {
+    id: "profileNotification",
+    title: " اعلانات",
+    icon: "Bell",
+    routes: ["profileNotification"],
+  },
+  {
+    id: "profileFavourites",
+    title: "علاقه‌مندی‌ها",
+    icon: "Love",
+    routes: ["profileFavourites"],
+  },
+  {
+    id: "personalInfo",
+    title: "ویرایش حساب کاربری",
+    icon: "Edit",
+    routes: ["personalInfo"],
   },
 ];

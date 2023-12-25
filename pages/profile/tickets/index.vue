@@ -1,11 +1,12 @@
 <template>
   <ProfileLayoutContainer>
+    books
     <UserInfoPersonalInfo />
   </ProfileLayoutContainer>
 </template>
 <script setup>
 definePageMeta({
-  name: "personalInfo",
-  breadcrumbs: "ویرایش حساب کاربری",
+  name: "profileTicket",
+  breadcrumbs: "تیکت های من",
 });
 </script>

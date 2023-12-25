@@ -1,11 +1,12 @@
 <template>
   <ProfileLayoutContainer>
+    courses
     <UserInfoPersonalInfo />
   </ProfileLayoutContainer>
 </template>
 <script setup>
 definePageMeta({
-  name: "personalInfo",
-  breadcrumbs: "ویرایش حساب کاربری",
+  name: "profileCourses",
+  breadcrumbs: "داشبورد",
 });
 </script>
