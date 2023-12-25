@@ -20,3 +20,25 @@ export const menuItems = [
     title: "سوالات متداول",
   },
 ];
+export const dashboard = [
+  {
+    id: "CourseInfo",
+    title: "اطلاعات کلی",
+    routes: ["CourseInfo"],
+  },
+  {
+    id: "CourseDetailsPage",
+    title: "جزییات",
+    routes: ["CourseDetailsPage"],
+  },
+  {
+    id: "CoursePrerequisitesPage",
+    title: "پیش‌نیازها",
+    routes: ["CoursePrerequisitesPage"],
+  },
+  {
+    id: "CourseChapters",
+    title: "ویرایش فصل‌ها",
+    routes: ["CourseChapters"],
+  },
+];
