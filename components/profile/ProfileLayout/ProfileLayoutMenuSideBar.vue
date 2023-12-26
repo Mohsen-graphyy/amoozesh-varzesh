@@ -10,8 +10,11 @@
     </div>
     <div class="flex flex-col gap-4 mt-4">
       <div v-for="item in dashboard" :key="item.id">
-        <MenuSideBarContainer :nav-links="item" />
+        <MenuSideBarContainer :nav-links="item" @clicked="$emit('clicked')" />
       </div>
     </div>
   </div>
 </template>
+<script setup>
+defineEmits(["clicked"]);
+</script>

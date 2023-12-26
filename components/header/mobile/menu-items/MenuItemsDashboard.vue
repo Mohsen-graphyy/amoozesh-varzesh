@@ -3,7 +3,7 @@
     :is-modal-open="isModalOpen"
     @outside-click="$emit('close')">
     <div class="mx-6 !rounded-t-xl">
-      <ProfileLayoutMenuSideBar />
+      <ProfileLayoutMenuSideBar @clicked="$emit('close')" />
     </div>
   </base-mobile-modal-menu>
 </template>

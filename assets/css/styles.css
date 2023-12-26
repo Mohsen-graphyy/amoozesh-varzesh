@@ -58,7 +58,8 @@
 
 .rotateInDownRight {
   animation-name: rotateInDownRight;
-  animation-duration: 300ms;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 @keyframes rotateInDownRight {
   0% {
@@ -74,7 +75,7 @@
 }
 .rotateInDownRight-enter-active {
   animation-name: rotateInDownRight;
-  animation-duration: 0.5s;
+  animation-duration: 1s;
   animation-fill-mode: both;
 }
 
