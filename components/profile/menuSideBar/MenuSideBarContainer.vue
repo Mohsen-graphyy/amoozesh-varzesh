@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-md:py-12 max-md:px-16 flex flex-col justify-center cursor-pointer font-medium relative transition-all ease-linear hover:text-blue"
+    class="flex flex-col justify-center cursor-pointer font-medium relative transition-all ease-linear hover:text-blue"
     :class="{ 'text-blue': checkIsActive }">
     <MenuSideBarItem
       :nav-links="navLinks"

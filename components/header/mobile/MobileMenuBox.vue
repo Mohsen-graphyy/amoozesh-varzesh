@@ -1,5 +1,14 @@
 <template>
-  <div class="fixed bottom-4 w-full md:hidden z-[60]">
+  <div class="fixed bottom-4 w-full md:hidden z-[70] rounded-t-xl">
+    <Transition name="rotateInDownRight">
+      <div
+        v-if="!selectedItem"
+        class="bg-gray-100 shadow-xl p-3 mx-4 rounded-xl !z-[50] my-2 w-fit self-end flex justify-between items-center"
+        @click="selectItem(dashboard)">
+        <BaseIcon svg-class="w-5 h-5 stroke-beta-gray-700" icon-path="Menu" />
+        <p>داشبورد</p>
+      </div>
+    </Transition>
     <div
       class="bg-gray-100 py-3 px-4 mx-4 rounded-xl flex justify-between items-center">
       <div
@@ -27,6 +36,9 @@
   <menu-items-shop
     :is-modal-open="isModalOpen('MenuItemsShop')"
     @close="closeModals" />
+  <MenuItemsDashboard
+    :is-modal-open="isModalOpen('MenuItemsDashboard')"
+    @close="closeModals" />
 </template>
 
 <script setup>
@@ -36,8 +48,15 @@ const menuListItems = [
   { id: 2, iconPath: "Search", modalName: "" },
   { id: 3, iconPath: "Menu", modalName: "MenuItemsMain" },
   { id: 4, iconPath: "Shoping", modalName: "MenuItemsShop" },
-  { id: 5, iconPath: "Person", link: token.value ? "profile" : "login" },
+  {
+    id: 5,
+    iconPath: "Person",
+    link: token.value ? "profileDashboard" : "login",
+  },
 ];
+const dashboard = {
+  modalName: "MenuItemsDashboard",
+};
 const selectedItem = ref(null);
 
 const isModalOpen = computed(() => (modalName) => {

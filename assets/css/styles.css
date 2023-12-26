@@ -54,4 +54,35 @@
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.rotateInDownRight {
+  animation-name: rotateInDownRight;
+  animation-duration: 300ms;
+}
+@keyframes rotateInDownRight {
+  0% {
+    transform-origin: right bottom;
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: right bottom;
+    transform: none;
+    opacity: 1;
+  }
+}
+.rotateInDownRight-enter-active {
+  animation-name: rotateInDownRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.rotateInDownRight-leave-active {
+  animation-delay: 0.5s;
+}
+
+.rotateInDownRight-enter-from,
+.rotateInDownRight-leave-to {
+  opacity: 0;
 }/*# sourceMappingURL=styles.css.map */
