@@ -2,7 +2,7 @@
   <div class="fixed bottom-4 w-full md:hidden z-[70] rounded-t-xl">
     <Transition name="rotateInDownRight">
       <div
-        v-if="!selectedItem"
+        v-if="!selectedItem && $route.path.includes('profile')"
         class="bg-gray-100 shadow-xl p-3 mx-4 rounded-xl !z-[50] my-2 w-fit self-end flex justify-between items-center"
         @click="selectItem(dashboard)">
         <BaseIcon svg-class="w-5 h-5 stroke-beta-gray-700" icon-path="Menu" />

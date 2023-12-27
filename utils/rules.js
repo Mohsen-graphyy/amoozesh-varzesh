@@ -1,7 +1,10 @@
 export const ruleNotEmpty = (v) => !!v || "پر کردن این بخش الزامیست";
 
-// export const ruleCharsPersian = (v) =>
-//   !v || patternCharsFa.test(v) || "از حروف فارسی استفاده کنید";
+export const ruleCharsPersian = (v) =>
+  !v || patternCharsFa.test(v) || "از حروف فارسی استفاده کنید";
+
+export const ruleCharsEn = (v) =>
+  !v || patternCharsEn.test(v) || "از حروف انگلیسی استفاده کنید";
 
 // export const ruleNationalCode = (v) => {
 //   const isValidCode = ((v) => {

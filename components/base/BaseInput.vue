@@ -89,7 +89,7 @@ function validate() {
     if (testResult !== true) errorMessage.value = testResult;
   });
   isValid.value =
-    !errorMessage.value && !props.extraErorrMessage ? true : false;
+    !errorMessage.value && !props.extraErorrMessage && !!props.modelValue;
   emit("validitionState", isValid.value);
 }
 </script>

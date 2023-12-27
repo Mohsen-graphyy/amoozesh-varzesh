@@ -10,6 +10,6 @@ export const patternMobile =
 
 // export const patternDigitsOnly = /^[0-9۰-۹]+$/
 
-// export const patternCharsEn = /^[a-zA-Z\s]*$/
+export const patternCharsEn = /^[a-zA-Z\s]*$/;
 
-// export const patternCharsFa = /^[\u0600-\u06FF\u200C\s]+$/
+export const patternCharsFa = /^[\u0600-\u06FF\u200C\s]+$/;
