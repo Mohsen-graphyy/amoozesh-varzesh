@@ -87,8 +87,7 @@ function validate() {
   console.log(props.modelValue);
   props.rules.forEach((pattern) => {
     const testResult = pattern(props.modelValue);
-    console.log(pattern, testResult);
-    if (testResult !== true) errorMessage.value = testResult;
+    errorMessage.value = testResult === true ? null : testResult;
   });
   isValid.value =
     !errorMessage.value && !props.extraErorrMessage && !!props.modelValue;

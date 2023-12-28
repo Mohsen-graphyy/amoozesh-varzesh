@@ -3,23 +3,25 @@
     <template #body>
       <div class="grid grid-cols-1 mt-5 gap-4">
         <BaseInput
-          icon="Person"
           id="full_name"
-          :rules="[ruleCharsPersian]"
-          v-model="state.fullname_fa"
-          placeholder="نام و نام خانوادگی به فارسی" />
-        <BaseInput
+          placeholder="نام و نام خانوادگی به فارسی"
           icon="Person"
+          :is-lazy-validation="false"
+          :rules="[ruleCharsPersian]"
+          v-model="state.fullname_fa" />
+        <BaseInput
           id="fullname_en"
-          :rules="[ruleCharsEn]"
-          v-model="state.fullname_en"
+          icon="Person"
           placeholder="نام و نام خانوادگی به انگلیسی"
+          :rules="[ruleCharsEn]"
+          :is-lazy-validation="false"
+          v-model="state.fullname_en"
           @error="changebirthdate" />
         <BaseDatePicker
           id="inputBirthDate"
           icon="Calender"
           :rules="[ruleNotEmpty]"
-          placeholder="loohjdf"
+          placeholder="تاریخ تولد"
           v-model="state.birthdate" />
       </div>
       {{ state.birthdate }}
