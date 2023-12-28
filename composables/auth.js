@@ -4,7 +4,8 @@ export const isLogin = computed(() => {
 });
 export const tokenInit = async () => {
   const refreshTokenCookie = useCookie("refresh_token");
-  if (refreshTokenCookie.value) {
+  const token = useCookie("token");
+  if (refreshTokenCookie.value && !token.value) {
     const tokenData = await useApi(serviceAuth.getRefreshToken, "POST", {
       body: {
         refresh_token: refreshTokenCookie.value,

@@ -66,7 +66,6 @@ async function login() {
     const token = useCookie("token", {
       maxAge: 5 * 60,
     });
-    console.log(auth.value);
     refreshToken.value = auth.value.refresh_token;
     token.value = auth.value.access_token;
 
