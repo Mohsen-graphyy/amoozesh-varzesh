@@ -1,0 +1,113 @@
+//fluid type mixins
+//src: https://blog.codepen.io/2016/10/31/fluid-type-blogs/
+@use "sass:math";
+$vp_small_mobile_upper: 360px;
+$vp_mobile_upper: 600px;
+$vp_tabletp_upper: 900px;
+$vp_tabletl_upper: 1200px;
+$vp_desktop_upper: 1500px;
+$vp_wide_lower: 1800px;
+$vp_wide_upper: 2100px;
+
+//media query mixins
+// xs:  small phone:            <360
+// s:   phone:                  < 600
+// m:   tablet portrait:    600 < 900
+// l:   tablet landscape:   900 < 1200
+// xl:  desktop:           1200 < 1800
+// xxl: wide screen:       1800 <
+@mixin at-e-m {
+  @media only screen and (min-width: $vp_mobile_upper + 1) and (max-width: $vp_tabletp_upper - 1) {
+    @content;
+  }
+}
+
+@mixin at-e-l {
+  @media only screen and (min-width: $vp_tabletp_upper) and (max-width: $vp_tabletl_upper - 1) {
+    @content;
+  }
+}
+
+@mixin at-e-l-xl {
+  @media only screen and (min-width: $vp_tabletl_upper) and (max-width: $vp_desktop_upper - 1) {
+    @content;
+  }
+}
+
+@mixin at-e-xl {
+  @media only screen and (min-width: $vp_tabletl_upper) and (max-width: $vp_wide_lower - 1) {
+    @content;
+  }
+}
+
+@mixin at-e-xxl {
+  @media only screen and (min-width: $vp_wide_lower + 1) {
+    @content;
+  }
+}
+
+@mixin at-gte-m {
+  @media only screen and (min-width: $vp_mobile_upper) {
+    @content;
+  }
+}
+
+@mixin at-gte-l {
+  @media only screen and (min-width: $vp_tabletp_upper) {
+    @content;
+  }
+}
+
+@mixin at-gte-xl {
+  @media only screen and (min-width: $vp_tabletl_upper) {
+    @content;
+  }
+}
+
+@mixin at-gte-l-xl {
+  @media only screen and (min-width: $vp_desktop_upper) {
+    @content;
+  }
+}
+
+@mixin at-gte-xxl {
+  @media only screen and (min-width: $vp_wide_lower) {
+    @content;
+  }
+}
+
+@mixin at-e-xs {
+  @media only screen and (max-width: $vp_small_mobile_upper) {
+    @content;
+  }
+}
+
+@mixin at-e-s {
+  @media only screen and (max-width: $vp_mobile_upper) {
+    @content;
+  }
+}
+
+@mixin at-lte-m {
+  @media only screen and (max-width: $vp_tabletp_upper) {
+    @content;
+  }
+}
+
+@mixin at-lte-l {
+  @media only screen and (max-width: $vp_tabletl_upper) {
+    @content;
+  }
+}
+
+@mixin at-lte-l-xl {
+  @media only screen and (max-width: $vp_desktop_upper) {
+    @content;
+  }
+}
+
+@mixin at-lte-xl {
+  @media only screen and (max-width: $vp_wide_lower) {
+    @content;
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <base-shadow v-if="isModalOpen" @click="$emit('outside-click')" />
+  <base-shadow :is-show="isModalOpen" @click="$emit('outside-click')" />
   <transition name="mobile-menu-slide">
     <div
       v-if="isModalOpen"
@@ -9,6 +9,8 @@
   </transition>
 </template>
 <script setup>
+defineEmits(["outside-click"]);
+
 defineProps({
   isModalOpen: {
     type: Boolean,

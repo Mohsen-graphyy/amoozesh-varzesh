@@ -7,9 +7,12 @@
         svg-class="stroke-beta-green-100 w-10"
         class="" />
       <div class="grid text-sm gap-3 md:grid-cols-2">
-        <p v-for="firstCol in firstCols" :key="firstCol.id">
+        <nuxt-link
+          v-for="firstCol in menuItems"
+          :key="firstCol.id"
+          :to="{ name: firstCol.link }">
           {{ firstCol.title }}
-        </p>
+        </nuxt-link>
       </div>
     </div>
     <div>
@@ -43,28 +46,6 @@
   </div>
 </template>
 <script setup>
-const firstCols = [
-  {
-    id: 1,
-    title: "خانه",
-    link: "",
-  },
-  {
-    id: 2,
-    title: "ارتباط با ما",
-    link: "",
-  },
-  {
-    id: 3,
-    title: "درباره ما",
-    link: "",
-  },
-  {
-    id: 4,
-    title: "سوالات متداول",
-    link: "",
-  },
-];
 const secondCols = [
   {
     id: 1,

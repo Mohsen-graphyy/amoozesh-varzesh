@@ -1,10 +1,7 @@
 <template>
   <div class="flex flex-col mt-10 md:flex-row md:justify-between items-center">
     <div class="md:w-1/2">
-      <div class="flex items-center">
-        <img src="/images/logo.svg" alt="آموزش ورزش" />
-        <h1 class="font-bold mr-2">سامانه آموزش ورزش</h1>
-      </div>
+      <base-logo title-classes="font-bold" />
       <h2 class="text-sm mt-3">
         در این وبسایت ما سعی کردیم در 3 بخش معرفی دوره‌های مربیگری و سمینارها،
         زبان علوم ورزشی و لایوهای آموزشی رایگان اطلاعاتی را در اختیار دانشجویان

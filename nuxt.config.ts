@@ -2,18 +2,25 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [["@pinia/nuxt", { autoImports: ["defineStore"] }]],
+  modules: ["@nuxt/image", ["@pinia/nuxt", { autoImports: ["defineStore"] }]],
   ssr: true,
   devtools: { enabled: true },
-  css: ["~/assets/css/main.css"],
+  css: ["~/assets/css/styles.css"],
   components: [
     {
       path: "~/components",
       pathPrefix: false,
     },
   ],
+  app: {
+    pageTransition: { name: "fade", mode: "out-in" },
+    layoutTransition: { name: "fade", mode: "out-in" },
+  },
   runtimeConfig: {
-    API_BASE_URL: process.env.API_BASE_URL,
+    public: {
+      baseUrl: process.env.BASE_URL,
+      baseApiUrl: process.env.BASE_API_URL,
+    },
   },
   pages: true,
   postcss: {
@@ -21,5 +28,11 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  imports: {
+    dirs: ["./stores"],
+  },
+  build: {
+    transpile: ["vue-toastification"],
   },
 });

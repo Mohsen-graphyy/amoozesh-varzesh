@@ -1,9 +1,15 @@
 export const useGenralStore = defineStore("general", {
   state: () => ({
-    counter: 0,
+    username: "",
+    otpCode: "",
   }),
   actions: {
-    // methods
+    setUsername(username: string) {
+      this.username = username;
+    },
+    setOtpCode(otpCode: string) {
+      this.otpCode = otpCode;
+    },
   },
   getters: {
     // getters
