@@ -52,25 +52,20 @@ const username = ref("");
 const isValid = ref(false);
 const getConfirmCode = async () => {
   if (isValid.value) {
-    try {
-      await useApi(
-        props.isSetPassword
-          ? serviceAuth.resetPassword
-          : serviceAuth.registerUser,
-        "post",
-        {
-          body: {
-            phone_number: username.value,
-          },
-          onResponseError({ response }) {
-            toast.error(response._data.detail[0]);
-          },
-        }
-      );
+    const { status } = await useApi(
+      props.isSetPassword
+        ? serviceAuth.resetPassword
+        : serviceAuth.registerUser,
+      "post",
+      {
+        body: {
+          phone_number: username.value,
+        },
+      }
+    );
+    if (status.value === "success") {
       emit("update:modelValue", "otp");
       store.setUsername(username.value);
-    } catch (e) {
-      console.log(e);
     }
   } else return;
 };

@@ -84,7 +84,6 @@ function onInput(value) {
   }
 }
 function validate() {
-  console.log(props.modelValue);
   props.rules.forEach((pattern) => {
     const testResult = pattern(props.modelValue);
     errorMessage.value = testResult === true ? null : testResult;
