@@ -42,27 +42,22 @@ const confirmPassword = ref("");
 
 const createPassword = async () => {
   if (password.value && confirmPassword.value) {
-    try {
-      await useApi(
-        props.isRestPassword
-          ? serviceAuth.setResetPassword
-          : serviceAuth.setPassword,
-        "post",
-        {
-          body: {
-            code: store.otpCode,
-            password: password.value,
-            password_confirm: confirmPassword.value,
-          },
-          onResponseError({ response }) {
-            toast.error(response._data.detail[0]);
-          },
-        }
-      );
-      navigateTo({ name: "login" });
-    } catch (e) {
-      console.log(e);
-    }
+    await useApi(
+      props.isRestPassword
+        ? serviceAuth.setResetPassword
+        : serviceAuth.setPassword,
+      "post",
+      {
+        body: {
+          password: password.value,
+          password_confirm: confirmPassword.value,
+        },
+        onResponseError({ response }) {
+          toast.error(response._data.detail[0]);
+        },
+      }
+    );
+    navigateTo({ name: "login" });
   } else return;
 };
 </script>

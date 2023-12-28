@@ -13,14 +13,16 @@
           id="fullname_en"
           :rules="[ruleCharsEn]"
           v-model="state.fullname_en"
-          placeholder="نام و نام خانوادگی به انگلیسی" />
-        <BaseInput
+          placeholder="نام و نام خانوادگی به انگلیسی"
+          @error="changebirthdate" />
+        <BaseDatePicker
+          id="inputBirthDate"
           icon="Calender"
-          id="birthdate"
-          :rules="[ruleCharsEn]"
-          v-model="state.birthdate"
-          placeholder="نام و نام خانوادگی به انگلیسی" />
+          :rules="[ruleNotEmpty]"
+          placeholder="loohjdf"
+          v-model="state.birthdate" />
       </div>
+      {{ state.birthdate }}
     </template>
   </ProfileMainContainer>
 </template>
@@ -30,4 +32,8 @@ const state = reactive({
   fullname_en: null,
   birthdate: null,
 });
+function changebirthdate(event) {
+  console.log(event);
+  console.log(state);
+}
 </script>

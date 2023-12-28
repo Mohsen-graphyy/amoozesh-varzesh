@@ -25,7 +25,7 @@
         title="ادامه"
         custom-class="bg-olied-100 text-white w-full  !text-sm !p-3"
         :is-disable="!isValid"
-        @click="$emit('update:modelValue', 'password')" />
+        @click="submitCode" />
       <base-button
         class="w-full"
         :title="`${
@@ -80,6 +80,16 @@ function timer() {
   secondsLeftToResend.value--;
   if (secondsLeftToResend.value === 0) clearInterval(intervalId);
 }
+const submitCode = async () => {
+  const { status } = await useApi(serviceAuth.checkOtpSetPassword, "POST", {
+    body: {
+      code: store.otpCode,
+    },
+  });
+  if (status.value === "success") {
+    emit("update:modelValue", "password");
+  }
+};
 </script>
 <style>
 .otp-input {

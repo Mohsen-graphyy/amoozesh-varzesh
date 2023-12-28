@@ -51,27 +51,27 @@ const password = ref("");
 const isValidUsername = ref(false);
 
 async function login() {
-  const auth = await useApi(serviceAuth.login, "POST", {
+  const { data: auth, status } = await useApi(serviceAuth.login, "POST", {
     body: {
       phone_number: username.value,
       password: password.value,
     },
-    onResponseError({ response }) {
-      toast.error(response._data.detail[0]);
-    },
   });
 
-  const refreshToken = useCookie("refresh_token", {
-    maxAge: 10 * 365 * 24 * 60 * 60,
-    path: "/",
-  });
-  const token = useCookie("token", {
-    maxAge: 5 * 60,
-  });
+  if (status.value === "success") {
+    const refreshToken = useCookie("refresh_token", {
+      maxAge: 10 * 365 * 24 * 60 * 60,
+      path: "/",
+    });
+    const token = useCookie("token", {
+      maxAge: 5 * 60,
+    });
+    console.log(auth.value);
+    refreshToken.value = auth.value.refresh_token;
+    token.value = auth.value.access_token;
 
-  refreshToken.value = auth.refresh_token;
-  token.value = auth.access_token;
-  toast.success("ورود با موفقیت انجام شد");
-  navigateTo({ name: "home" });
+    toast.success("ورود با موفقیت انجام شد");
+    navigateTo({ name: "home" });
+  }
 }
 </script>

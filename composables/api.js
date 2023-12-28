@@ -1,6 +1,8 @@
+import { useToast } from "vue-toastification";
+const toast = useToast();
 export const useApi = (url, method = "get", options = {}) => {
   const config = useRuntimeConfig();
-  return $fetch(url, {
+  return useFetch(url, {
     method,
     baseURL: config.public.baseUrl,
     retry: 3,
@@ -44,6 +46,7 @@ export const useApi = (url, method = "get", options = {}) => {
           options.headers.authorization = `Bearer ${token.value}`;
         }
       }
+      toast.error(response?._data?.detail[0]);
     },
     ...options,
   });
