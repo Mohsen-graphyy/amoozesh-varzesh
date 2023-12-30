@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="isLoader"
     class="w-full h-screen flex justify-center absolute top-0 left-0 items-center">
     <BaseShadow :is-show="isLoader" class="z-[999]" />
     <Transition name="fade">

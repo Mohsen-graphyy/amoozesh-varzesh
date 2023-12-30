@@ -4,9 +4,9 @@
     <div class="flex gap-5" :class="customClass">
       <div
         v-for="option in options"
-        :key="option.value"
+        :key="option.id"
         class="flex items-center radiobtn">
-        <label :for="option.value"
+        <label :for="option.id"
           ><slot name="label">
             {{ option.label }}
           </slot></label
@@ -15,7 +15,8 @@
           v-bind="$attrs"
           type="radio"
           :value="option.value"
-          :id="option.value"
+          :name="name"
+          :id="option.id"
           :checked="modelValue === option.value"
           @input="$emit('update:modelValue', $event.target.value)" />
         <span class="checkmark"></span>
@@ -27,7 +28,7 @@
 defineEmits(["update:modelValue"]);
 const props = defineProps({
   modelValue: {
-    type: String || Null,
+    type: String,
     required: true,
   },
   legend: {
@@ -41,6 +42,10 @@ const props = defineProps({
   customClass: {
     type: String,
     default: "",
+  },
+  name: {
+    type: String,
+    required: true,
   },
 });
 </script>

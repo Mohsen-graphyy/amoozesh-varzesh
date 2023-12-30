@@ -7,3 +7,6 @@ export const serviceAuth = {
   resetPassword: "accounts/api/v1/reset_password/",
   setResetPassword: "accounts/api/v1otp_verify_set_reset_password/",
 };
+export const serviceProfile = {
+  profileInfo: "/accounts/api/v1/profile-info",
+};

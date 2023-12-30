@@ -42,4 +42,13 @@ watch(
     immediate: true,
   }
 );
+watch(
+  () => props.modelValue,
+  () => {
+    display.value = dateFa(props.modelValue);
+  },
+  {
+    immediate: true,
+  }
+);
 </script>

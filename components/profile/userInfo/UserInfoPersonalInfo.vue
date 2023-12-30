@@ -26,64 +26,99 @@
               v-model="state.birthdate" />
           </div>
           <BaseRadioButton
-            v-model="state.nationality"
+            v-model="state.nationality.id"
             legend="تعیین اتباع"
+            name="nationality"
             :options="nationalOptions" />
           <BaseInput
-            v-if="state.nationality === 'irani'"
-            id="full_name"
+            v-if="+state.nationality.id === 1"
+            id="meli_code"
             placeholder="کد ملی"
             icon="IdCard"
             :is-lazy-validation="false"
-            :rules="[ruleCharsPersian]"
-            v-model="state.fullname_fa" />
+            v-model="state.national_id" />
           <BaseInput
             v-else
-            id="full_name"
+            id="passport"
             placeholder="شناسه پاسپورت"
-            icon="Person"
+            icon="IdCard"
             :is-lazy-validation="false"
-            :rules="[ruleCharsPersian]"
-            v-model="state.fullname_fa" />
+            v-model="state.passport_id" />
           <BaseRadioButton
-            v-model="state.gender"
+            v-model="state.gender.id"
             legend="جنسیت"
+            name="gender"
             :options="genderOptions" />
         </div>
         <BaseButton
           title="تایید و ذخیره"
-          class="bg-olied-50 mt-4 w-fit self-end hover:bg-olied-100 rounded-xl text-center text-white transition duration-150 cursor-pointer" />
+          class="bg-olied-50 mt-4 w-fit self-end hover:bg-olied-100 rounded-xl text-center text-white transition duration-150 cursor-pointer"
+          :is-loader="isLoadBtn"
+          @click="submitUserInfo" />
       </div>
     </template>
   </ProfileMainContainer>
 </template>
 <script setup>
-const state = reactive({
+import { useToast } from "vue-toastification";
+const toast = useToast();
+const isLoadBtn = ref(false);
+const state = ref({
   fullname_fa: null,
   fullname_en: null,
   birthdate: null,
-  nationality: "irani",
-  gender: null,
+  nationality: { id: 1 },
+  gender: { id: null },
+  national_id: null,
+  passport_id: null,
+  national_id_image: null,
 });
 
+const getUserInfo = async () => {
+  const { data: userInfo, status } = await useApi(
+    `${serviceProfile.profileInfo}/1/`
+  );
+  if (status.value === "success") {
+    state.value = userInfo.value;
+  }
+};
+
+const submitUserInfo = async () => {
+  isLoadBtn.value = true;
+  state.value.gender = state.value.gender.id;
+  state.value.nationality = state.value.nationality.id;
+  const { status } = await useApi(`${serviceProfile.profileInfo}/1/`, "PATCH", {
+    body: state.value,
+  });
+  if (status.value === "success") {
+    toast.success("مشخصات فردی شما به‌روز‌رسانی شد");
+    getUserInfo();
+  }
+  isLoadBtn.value = false;
+};
+getUserInfo();
 const genderOptions = [
   {
     label: "آقا",
-    value: "male",
+    value: 1,
+    id: "male",
   },
   {
     label: "خانم",
-    value: "female",
+    value: 2,
+    id: "female",
   },
 ];
 const nationalOptions = [
   {
     label: "ایرانی هستم",
-    value: "irani",
+    value: 1,
+    id: "Iranian",
   },
   {
     label: "ایرانی نیستم",
-    value: "no-irani",
+    value: 2,
+    id: "no_iranian",
   },
 ];
 </script>
