@@ -30,20 +30,26 @@ export const useApi = (url, method = "get", options = {}) => {
         // there is no valid refresh token
         if (!refreshTokenCookie.value) navigateTo({ name: "login" });
         else {
-          const tokenData = await $fetch(serviceAuth.getRefreshToken, "post", {
-            body: {
-              refresh_token: refreshTokenCookie.value,
-            },
-            onResponseError() {
-              navigateTo({ name: "login" });
-            },
-          });
-          const token = useCookie("token", {
-            maxAge: 5 * 60,
-            path: "/",
-          });
-          token.value = tokenData.value.access_token;
-          options.headers.authorization = `Bearer ${token.value}`;
+          const { data: tokenData, status } = await useFetch(
+            serviceAuth.getRefreshToken,
+            "post",
+            {
+              body: {
+                refresh_token: refreshTokenCookie.value,
+              },
+              onResponseError() {
+                navigateTo({ name: "login" });
+              },
+            }
+          );
+          if (status.value === "success") {
+            const token = useCookie("token", {
+              maxAge: 5 * 60,
+              path: "/",
+            });
+            token.value = tokenData.value.access_token;
+            options.headers.authorization = `Bearer ${token.value}`;
+          }
         }
       }
       toast.error(response?._data?.detail[0]);

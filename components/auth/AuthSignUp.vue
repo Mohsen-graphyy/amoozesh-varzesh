@@ -52,6 +52,7 @@ const username = ref("");
 const isValid = ref(false);
 const getConfirmCode = async () => {
   if (isValid.value) {
+    startLoader();
     const { status } = await useApi(
       props.isSetPassword
         ? serviceAuth.resetPassword
@@ -67,6 +68,7 @@ const getConfirmCode = async () => {
       emit("update:modelValue", "otp");
       store.setUsername(username.value);
     }
+    stopLoader();
   } else return;
 };
 </script>

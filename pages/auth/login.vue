@@ -45,19 +45,18 @@ definePageMeta({
   layout: "auth",
 });
 const toast = useToast();
-
 const username = ref("");
 const password = ref("");
 const isValidUsername = ref(false);
 
 async function login() {
+  startLoader();
   const { data: auth, status } = await useApi(serviceAuth.login, "POST", {
     body: {
       phone_number: username.value,
       password: password.value,
     },
   });
-
   if (status.value === "success") {
     const refreshToken = useCookie("refresh_token", {
       maxAge: 10 * 365 * 24 * 60 * 60,
@@ -72,5 +71,6 @@ async function login() {
     toast.success("ورود با موفقیت انجام شد");
     navigateTo({ name: "home" });
   }
+  stopLoader();
 }
 </script>

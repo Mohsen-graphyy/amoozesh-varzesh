@@ -65,6 +65,7 @@ const state = reactive({
   nationality: "irani",
   gender: null,
 });
+
 const genderOptions = [
   {
     label: "آقا",

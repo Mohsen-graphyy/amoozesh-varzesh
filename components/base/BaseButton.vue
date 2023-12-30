@@ -6,8 +6,10 @@
       :class="[
         customClass,
         { '!bg-beta-gray-150 !cursor-not-allowed': isDisable },
+        { 'flex items-center gap-4 justify-between': isLoader },
       ]">
       {{ title }}
+      <base-inside-loader v-if="isLoader" class="mx-2" />
     </button>
     <button
       v-else
@@ -45,6 +47,10 @@ defineProps({
     default: "",
   },
   isDisable: {
+    type: Boolean,
+    default: false,
+  },
+  isLoader: {
     type: Boolean,
     default: false,
   },
