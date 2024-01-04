@@ -57,7 +57,7 @@ const submitUserInfo = async () => {
     body: state.value,
   });
   if (status.value === "success") {
-    toast.success("مشخصات فردی شما به‌روز‌رسانی شد");
+    toast.success("اطلاعات تحصیلی شما به‌روز‌رسانی شد");
     getUserInfo();
   }
   isLoadBtn.value = false;

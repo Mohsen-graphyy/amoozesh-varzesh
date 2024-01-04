@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-olied-100 rounded-xl p-4 flex flex-col text-white">
+  <div
+    class="sticky top-10 bg-olied-100 rounded-xl p-4 flex flex-col text-white">
     <div class="flex items-center gap-4">
       <NuxtImg
         src="/images/abaas-alidoost.png"
