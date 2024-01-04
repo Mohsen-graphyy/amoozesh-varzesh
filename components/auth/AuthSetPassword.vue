@@ -17,7 +17,7 @@
         class="w-full"
         :title="isRestPassword ? 'تایید' : 'تکمیل ثبت نام'"
         custom-class="bg-olied-50 text-white w-full !text-sm !p-3"
-        :is-disable="!password && !confirmPassword"
+        :is-disable="!password || !confirmPassword"
         @click="createPassword" />
     </div>
   </div>
@@ -46,14 +46,11 @@ const createPassword = async () => {
       props.isRestPassword
         ? serviceAuth.setResetPassword
         : serviceAuth.setPassword,
-      "post",
+      "POST",
       {
         body: {
           password: password.value,
           password_confirm: confirmPassword.value,
-        },
-        onResponseError({ response }) {
-          toast.error(response._data.detail[0]);
         },
       }
     );
