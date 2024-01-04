@@ -25,7 +25,6 @@
 <script setup>
 import { useToast } from "vue-toastification";
 const toast = useToast();
-const store = useGenralStore();
 const emit = defineEmits(["update:modelValue"]);
 const props = defineProps({
   modelValue: {
@@ -41,8 +40,12 @@ const password = ref("");
 const confirmPassword = ref("");
 
 const createPassword = async () => {
-  if (password.value && confirmPassword.value) {
-    await useApi(
+  if (
+    password.value &&
+    confirmPassword.value &&
+    password.value === confirmPassword.value
+  ) {
+    const { status } = await useApi(
       props.isRestPassword
         ? serviceAuth.setResetPassword
         : serviceAuth.setPassword,
@@ -54,7 +57,12 @@ const createPassword = async () => {
         },
       }
     );
-    navigateTo({ name: "login" });
+    if (status.value === "success") {
+      toast.success("ثبت نام با موفقیت انجام شد.");
+      navigateTo({ name: "login" });
+    } else {
+      emit("update:modelValue", "register");
+    }
   } else return;
 };
 </script>

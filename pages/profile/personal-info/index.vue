@@ -1,6 +1,7 @@
 <template>
   <ProfileLayoutContainer>
     <UserInfoPersonalInfo />
+    <UserInfoEducation />
   </ProfileLayoutContainer>
 </template>
 <script setup>

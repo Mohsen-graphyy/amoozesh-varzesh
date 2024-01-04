@@ -5,7 +5,7 @@
       <div class="lg:basis-1/4 hidden lg:flex w-full">
         <ProfileLayoutMenuSideBar class="w-full" />
       </div>
-      <div class="flex flex-col w-full lg:basis-3/4">
+      <div class="flex flex-col w-full lg:basis-3/4 gap-4">
         <slot></slot>
       </div>
     </div>

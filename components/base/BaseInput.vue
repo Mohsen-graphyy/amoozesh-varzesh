@@ -8,6 +8,7 @@
     >
     <div v-if="$attrs.type !== 'textarea'" class="relative">
       <input
+        v-bind="$attrs"
         class="w-full rounded-lg h-12 bg-beta-gray-50 border border-solid outline-none pr-11 placeholder:text-beta-gray-150 placeholder:text-sm"
         :class="{
           'border-red-500': extraErorrMessage || errorMessage,
@@ -28,10 +29,15 @@
             : 'stroke-beta-gray-300',
         ]"
         svg-class="w-6" />
-      <BaseIcon
-        v-if="isValid"
-        icon-path="Correct"
-        class="absolute top-3 left-3 w-6 text-green-500" />
+      <slot name="left-icon">
+        <BaseIcon
+          v-if="isValid"
+          icon-path="Correct"
+          class="absolute top-3 left-3 w-6 text-green-500" />
+      </slot>
+      <div v-if="$slots.extraContent" class="absolute w-full z-50">
+        <slot name="extraContent"></slot>
+      </div>
     </div>
     <textarea
       v-else
@@ -54,6 +60,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: "BaseInput", inheritAttrs: false });
+
 const props = defineProps({
   icon: { type: String, required: true },
   label: { type: String, default: "" },
