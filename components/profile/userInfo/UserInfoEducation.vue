@@ -3,53 +3,21 @@
     <template #body>
       <div class="flex flex-col">
         <div class="grid grid-cols-1 md:grid-cols-2 mt-5 gap-4">
-          <BaseInput
-            id="full_name"
-            placeholder="نام و نام خانوادگی به فارسی"
-            icon="Person"
-            :is-lazy-validation="false"
-            :rules="[ruleCharsPersian]"
-            v-model="state.fullname_fa" />
-          <BaseInput
-            id="fullname_en"
-            icon="Person"
-            placeholder="نام و نام خانوادگی به انگلیسی"
-            :rules="[ruleCharsEn]"
-            :is-lazy-validation="false"
-            v-model="state.fullname_en" />
-          <div>
-            <BaseDatePicker
-              id="inputBirthDate"
-              icon="Calender"
-              :rules="[ruleNotEmpty]"
-              placeholder="تاریخ تولد"
-              v-model="state.birthdate" />
-          </div>
-          <BaseRadioButton
-            v-model="state.nationality.id"
-            legend="تعیین اتباع"
-            name="nationality"
-            :options="nationalOptions" />
-          <BaseInput
-            v-if="+state.nationality.id === 1"
-            id="meli_code"
-            placeholder="کد ملی"
-            icon="IdCard"
-            :is-lazy-validation="false"
-            v-model="state.national_id" />
-          <BaseInput
-            v-else
-            id="passport"
-            placeholder="شناسه پاسپورت"
-            icon="IdCard"
-            :is-lazy-validation="false"
-            v-model="state.passport_id" />
           <BaseSelect
-            v-model="state.gender"
-            id="inputGender"
-            label="جنسیت"
-            :searchable="false"
-            :options="genderList" />
+            v-model="state.degree.id"
+            id="education"
+            :options="degreeList" />
+          <BaseInput
+            id="major"
+            placeholder="رشته تحصیلی"
+            icon="Education"
+            :is-lazy-validation="false"
+            v-model="state.major" />
+          <BaseRadioButton
+            v-model="state.studied_phys_ed.id"
+            legend="یکی از گزینه‌های زیر را انتخاب کنید"
+            name="educationPhy"
+            :options="studiedPhy" />
         </div>
         <BaseButton
           title="تایید و ذخیره"
@@ -65,19 +33,16 @@ import { useToast } from "vue-toastification";
 const toast = useToast();
 const isLoadBtn = ref(false);
 const state = ref({
-  fullname_fa: null,
-  fullname_en: null,
-  birthdate: null,
-  nationality: { id: 1 },
-  gender: 1,
-  national_id: null,
-  passport_id: null,
-  national_id_image: null,
+  degree: { id: 1 },
+  major: null,
+  studied_phys_ed: {
+    id: null,
+  },
 });
 
 const getUserInfo = async () => {
   const { data: userInfo, status } = await useApi(
-    `${serviceProfile.profileInfo}/1/`
+    `${serviceProfile.educationInfo}/1/`
   );
   if (status.value === "success") {
     state.value = userInfo.value;
@@ -86,9 +51,9 @@ const getUserInfo = async () => {
 
 const submitUserInfo = async () => {
   isLoadBtn.value = true;
-  state.value.gender = state.value.gender.id;
-  state.value.nationality = state.value.nationality.id;
-  const { status } = await useApi(`${serviceProfile.profileInfo}/1/`, "PATCH", {
+  state.value.degree = state.value.degree.id;
+  state.value.studied_phys_ed = state.value.studied_phys_ed.id;
+  const { status } = await useApi(`${serviceProfile.educationInfo}/1/`, "PUT", {
     body: state.value,
   });
   if (status.value === "success") {
@@ -99,30 +64,47 @@ const submitUserInfo = async () => {
 };
 getUserInfo();
 
-const genderList = [
+const degreeList = [
   {
-    text: "انتخاب نشده",
-    value: 0,
-  },
-  {
-    text: "مرد",
+    text: "آخرین مقطع تحصیلی",
     value: 1,
   },
   {
-    text: "زن",
+    text: "راهنمایی",
     value: 2,
+  },
+  {
+    text: "دیپلم",
+    value: 3,
+  },
+  {
+    text: "کاردانی",
+    value: 4,
+  },
+  {
+    text: "کارشناسی",
+    value: 5,
+  },
+  {
+    text: "کارشناسی ارشد",
+    value: 6,
+  },
+  {
+    text: "دکترا",
+    value: 7,
   },
 ];
-const nationalOptions = [
+
+const studiedPhy = [
   {
-    label: "ایرانی هستم",
+    label: "تربیت بدنی هستم",
     value: 1,
-    id: "Iranian",
+    id: "yes_education",
   },
   {
-    label: "ایرانی نیستم",
+    label: "تربیت بندی نیستم",
     value: 2,
-    id: "no_iranian",
+    id: "no_education",
   },
 ];
 </script>

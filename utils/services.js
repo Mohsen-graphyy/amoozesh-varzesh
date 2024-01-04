@@ -9,4 +9,5 @@ export const serviceAuth = {
 };
 export const serviceProfile = {
   profileInfo: "/accounts/api/v1/profile-info",
+  educationInfo: "/accounts/api/v1/profile-education",
 };

@@ -18,7 +18,7 @@
       <transition name="scale">
         <ul
           v-if="isActiveRef"
-          class="base-select__options bg-gray-50 shadow-lg rounded p-4 scrollbar overflow-y-auto">
+          class="base-select__options bg-gray-50 shadow-lg rounded p-2 scrollbar overflow-y-auto">
           <template v-if="options.length">
             <li
               v-for="(option, index) in options"
