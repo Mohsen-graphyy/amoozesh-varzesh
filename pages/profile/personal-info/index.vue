@@ -2,6 +2,7 @@
   <ProfileLayoutContainer>
     <UserInfoPersonalInfo />
     <UserInfoEducation />
+    <UserInfoContact />
   </ProfileLayoutContainer>
 </template>
 <script setup>

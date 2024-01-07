@@ -1,59 +1,78 @@
 import { useToast } from "vue-toastification";
-const toast = useToast();
-export const useApi = (url, method = "get", options = {}) => {
+
+export const useApi = (url, method = "GET", apiOptions = {}) => {
   const config = useRuntimeConfig();
+  const $toast = useToast();
+  const { value: tokenValue } = useCookie("token");
+  console.log("tst");
+  delete apiOptions.headers?.Authorization;
+
+  apiOptions.headers = {
+    ...(tokenValue ? { Authorization: `Bearer ${tokenValue}` } : {}),
+    ...(apiOptions.headers ? apiOptions.headers : {}),
+  };
+
+  let isRefreshing = false;
+  let retryAttempt = 0;
   return useFetch(url, {
     method,
     baseURL: config.public.baseUrl,
     retry: 3,
-    retryDelay: 500,
     timeout: 13000,
-    credentials: "include",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      Accept: "application/json",
-      "Content-type": "application/json; multipart/form-data",
-    },
     retryStatusCodes: [
-      401, 408, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511,
+      408, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511,
     ],
-    onRequest({ options }) {
-      const tokenCookie = useCookie("token");
-      if (tokenCookie.value) {
-        options.headers = options.headers || {};
-        options.headers.authorization = `Bearer ${tokenCookie.value}`;
-      }
-    },
-    async onResponseError({ response, request, options }) {
+    async onResponseError({ response, options }) {
+      if (options.retryStatusCodes.includes(response.status)) retryAttempt++;
+      // token expires
       if (response.status === 401) {
         const refreshTokenCookie = useCookie("refresh_token");
         // there is no valid refresh token
-        if (!refreshTokenCookie.value) navigateTo({ name: "login" });
+        if (!refreshTokenCookie.value) navigateTo("login");
         else {
-          const { data: tokenData, status } = await useFetch(
-            serviceAuth.getRefreshToken,
-            "post",
-            {
-              body: {
-                refresh_token: refreshTokenCookie.value,
-              },
-              onResponseError() {
-                navigateTo({ name: "login" });
-              },
+          // there is no new refresh token call active
+          if (!isRefreshing) {
+            isRefreshing = true;
+            try {
+              const tokenData = await $fetch(
+                `${config.public.baseUrl}${serviceAuth.getRefreshToken}`,
+                {
+                  method: "POST",
+                  body: {
+                    refresh_token: refreshTokenCookie.value,
+                  },
+                  server: false,
+                  onResponseError() {
+                    navigateTo({ name: "login" });
+                  },
+                }
+              );
+              const newTokenCookie = useCookie("token", {
+                maxAge: 5 * 60,
+                path: "/",
+              });
+              newTokenCookie.value = tokenData.access_token;
+              await nextTick();
+              return useApi(url, method, apiOptions);
+            } catch (e) {
+              authLogin();
+            } finally {
+              isRefreshing = false;
             }
-          );
-          if (status.value === "success") {
-            const token = useCookie("token", {
-              maxAge: 5 * 60,
-              path: "/",
-            });
-            token.value = tokenData.value.access_token;
-            options.headers.authorization = `Bearer ${token.value}`;
+          } else {
+            // there is a new refresh token call active so all other requests wait for the new token data
+            const intervalId = setInterval(() => {
+              if (!isRefreshing) {
+                clearInterval(intervalId);
+                return useApi(url, method, apiOptions);
+              }
+            }, 100);
           }
         }
       }
-      toast.error(response?._data?.detail[0]);
+      // else error
+      $toast.error(response?._data?.detail[0]);
     },
-    ...options,
+    ...apiOptions,
   });
 };

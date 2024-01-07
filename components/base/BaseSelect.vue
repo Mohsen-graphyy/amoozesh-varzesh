@@ -8,8 +8,8 @@
     "
     class="!cursor-pointer read-only:text-black"
     ref="input"
-    :readonly="!searchable"
     icon="Person"
+    :readonly="!searchable"
     :model-value="selectedOptionText"
     @update:modelValue="onSearch"
     @click="isActiveRef = !isActiveRef">
@@ -67,19 +67,24 @@ const props = defineProps({
   isLoading: { type: Boolean, default: false },
   searchable: { type: Boolean, default: false },
   search: { type: String, value: "" },
+  titleItem: { type: String, default: "" },
 });
 
 const selectedOptionText = computed(() => {
   const option = props.options.find(
     (option) => option[props.optionValueKey] === props.modelValue
   );
-  return option ? option[props.optionTextKey] : props.search;
+  return option
+    ? option[props.optionTextKey]
+    : props.search
+    ? props.search
+    : props.titleItem;
 });
 const selectedOptionKey = computed(() => {
   const option = props.options.find(
     (option) => option[props.optionValueKey] === props.modelValue
   );
-  return option[props.optionValueKey];
+  return option ? option[props.optionValueKey] : null;
 });
 
 const isActiveRef = ref(false);

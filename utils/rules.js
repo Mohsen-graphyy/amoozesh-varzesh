@@ -28,3 +28,6 @@ export const rulePhoneNumber = (v) =>
 //   patternNumbersEn.test(v) ||
 //   patternNumbersFa.test(v) ||
 //   "تنها از ارقام استفاده کنید";
+
+export const ruleEmail = (v) =>
+  !v || patternEmail.test(v) || "فرمت ایمیل صحیح نیست";

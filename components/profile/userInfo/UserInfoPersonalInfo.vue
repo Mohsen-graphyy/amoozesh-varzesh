@@ -52,7 +52,7 @@
         </div>
         <BaseButton
           title="تایید و ذخیره"
-          class="bg-olied-50 mt-4 w-fit self-end hover:bg-olied-100 rounded-xl text-center text-white transition duration-150 cursor-pointer"
+          class="bg-olied-50 mt-4 md:w-fit md:self-end hover:bg-olied-100 rounded-xl text-center text-white transition duration-150 cursor-pointer"
           :is-loader="isLoadBtn"
           @click="submitUserInfo" />
       </div>
@@ -87,6 +87,7 @@ const submitUserInfo = async () => {
   isLoadBtn.value = true;
   state.value.gender = state.value.gender.id;
   state.value.nationality = state.value.nationality.id;
+  state.value.national_id_image = null;
   const { status } = await useApi(`${serviceProfile.profileInfo}/1/`, "PATCH", {
     body: state.value,
   });
