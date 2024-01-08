@@ -1,7 +1,7 @@
 <template>
   <BaseModal
     box-classes="text-center"
-    disable-teleport
+    :disable-teleport="disableTeleport"
     closeable
     :isModalOpen="isShowConfirmModal"
     @close-modal="$emit('close')">
@@ -33,6 +33,10 @@ const props = defineProps({
   isShowConfirmModal: {
     type: Boolean,
     required: true,
+  },
+  disableTeleport: {
+    type: Boolean,
+    default: true,
   },
 });
 </script>

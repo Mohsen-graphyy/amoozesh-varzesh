@@ -41,7 +41,10 @@
       </div>
     </template>
   </ProfileMainContainer>
-  <UserInfoAddress v-if="state.address.length" :addresses="state.address" />
+  <UserInfoAddress
+    v-if="state.address.length"
+    :addresses="state.address"
+    @update-address="getUserInfo" />
 </template>
 <script setup>
 import { useToast } from "vue-toastification";
