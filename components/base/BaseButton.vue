@@ -1,26 +1,32 @@
 <template>
   <div class="">
-    <button
-      v-if="!hasIcon"
-      class="rounded-xl py-3 px-4"
-      :class="[
-        customClass,
-        { '!bg-beta-gray-150 !cursor-not-allowed': isDisable },
-        { 'flex items-center gap-4 justify-between': isLoader },
-      ]">
-      {{ title }}
-      <base-inside-loader v-if="isLoader" class="mx-2" />
-    </button>
-    <button
+    <div v-if="!isLoader">
+      <button
+        v-if="!hasIcon"
+        class="rounded-xl py-3 px-4"
+        :class="[
+          customClass,
+          { '!bg-beta-gray-150 !cursor-not-allowed': isDisable },
+        ]">
+        {{ title }}
+      </button>
+      <button
+        v-else
+        class="rounded-xl py-3 px-4 flex items-center"
+        :class="[
+          customClass,
+          { '!bg-beta-gray-150 !cursor-not-allowed': isDisable },
+        ]">
+        <base-icon :svg-class="svgClass" :icon-path="iconPath"></base-icon>
+        <p class="mr-2">{{ title }}</p>
+      </button>
+    </div>
+    <div
       v-else
-      class="rounded-xl py-3 px-4 flex items-center"
-      :class="[
-        customClass,
-        { '!bg-beta-gray-150 !cursor-not-allowed': isDisable },
-      ]">
-      <base-icon :svg-class="svgClass" :icon-path="iconPath"></base-icon>
-      <p class="mr-2">{{ title }}</p>
-    </button>
+      class="flex justify-center items-center p-1 mx-10"
+      :class="customClass">
+      <base-inside-loader class="my-4" />
+    </div>
   </div>
 </template>
 

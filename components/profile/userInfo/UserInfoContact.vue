@@ -41,6 +41,7 @@
       </div>
     </template>
   </ProfileMainContainer>
+  <UserInfoAddress v-if="state.address.length" :addresses="state.address" />
 </template>
 <script setup>
 import { useToast } from "vue-toastification";
@@ -81,8 +82,7 @@ const submitUserInfo = async () => {
   }
   isLoadBtn.value = false;
 };
-getUserInfo();
-
+onMounted(() => getUserInfo());
 const provinces = [
   {
     province_id: 1,

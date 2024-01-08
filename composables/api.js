@@ -1,6 +1,6 @@
 import { useToast } from "vue-toastification";
 
-export const useApi = (url, method = "GET", apiOptions = {}) => {
+export const useApi = async (url, method = "GET", apiOptions = {}) => {
   const config = useRuntimeConfig();
   const $toast = useToast();
   const { value: tokenValue } = useCookie("token");
@@ -14,6 +14,7 @@ export const useApi = (url, method = "GET", apiOptions = {}) => {
 
   let isRefreshing = false;
   let retryAttempt = 0;
+  await nextTick();
   return useFetch(url, {
     method,
     baseURL: config.public.baseUrl,
