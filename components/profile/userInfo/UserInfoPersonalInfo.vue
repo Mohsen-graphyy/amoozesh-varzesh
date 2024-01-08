@@ -97,7 +97,8 @@ const submitUserInfo = async () => {
   }
   isLoadBtn.value = false;
 };
-onMounted(() => getUserInfo());
+
+getUserInfo();
 const genderOptions = [
   {
     label: "آقا",

@@ -4,7 +4,7 @@
     class="w-full h-screen flex justify-center absolute top-0 left-0 items-center">
     <BaseShadow :is-show="isLoader" class="z-[999]" />
     <Transition name="fade">
-      <div v-if="isLoader" class="fixed w-full min-h-screen z-[9999]">
+      <div v-if="isLoader" class="fixed w-full min-h-screen z-[999999]">
         <div class="flex justify-center items-center min-h-screen">
           <div class="bars"></div>
         </div>

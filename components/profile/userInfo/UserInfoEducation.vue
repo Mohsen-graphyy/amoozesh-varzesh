@@ -62,7 +62,7 @@ const submitUserInfo = async () => {
   }
   isLoadBtn.value = false;
 };
-onMounted(() => getUserInfo());
+getUserInfo()
 const degreeList = [
   {
     text: "آخرین مقطع تحصیلی",

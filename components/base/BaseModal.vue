@@ -22,7 +22,7 @@
               v-if="closeable"
               class="bg-transparent cursor-pointer"
               @click="$emit('close-modal')">
-              <base-icon name="close" size="12px" />
+              <base-icon icon-path="Close" svg-class="stroke-black w-5 h-5" />
             </button>
           </div>
           <slot name="bodyContent"></slot>

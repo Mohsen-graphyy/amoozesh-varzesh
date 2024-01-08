@@ -2,7 +2,6 @@
   <BaseModal
     box-classes="text-center"
     :disable-teleport="disableTeleport"
-    closeable
     :isModalOpen="isShowConfirmModal"
     @close-modal="$emit('close')">
     <template v-slot:title>
